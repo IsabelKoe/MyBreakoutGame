@@ -59,7 +59,7 @@ canvas {
   width: var(--width);
 }
 
-#score,
-#info {
+#current-score,
+#player-info {
   width: 200px;
 }
