@@ -10,15 +10,28 @@
 </head>
 
 <body>
-    <div id="main" class="main">
-        <canvas id="playField" width="1000" height="600"></canvas>
-        <img id="background" src="./images/background.png"></img>
-        <div id="display">
-          <div id="score"></div>
-          <button id="start">Start</button>
-          <div id="info">Press play!</div>
+    <header>
+        <h1>Breakout Game</h1>
+    </header>
+    <main class="main-grid">
+        <div class="grid-header">
+            <button>Enter name</button>
+            <button>Play Game</button>
+            <button>Help</button>
         </div>
-      </div>
+        <div id="main" class="grid-gamefield">
+            <canvas id="playfield-canvas" width="1000" height="600"></canvas>
+            <img id="game-background" src="./src/images/background.png"></img>
+            <div id="display">
+                <div id="current-score"></div>
+                <button id="start-button">Start Game</button>
+            <div id="info-for-player">Press play!</div>
+            </div>
+        </div>
+        <div class="highscore">
+            <h2>Your Highscores:</h2>
+        </div>
+    </main>
 </body>
 
 </html>
