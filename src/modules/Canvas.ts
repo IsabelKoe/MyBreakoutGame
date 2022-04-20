@@ -1,5 +1,7 @@
 import { canvas, currentScore, startBtn, playerInfo } from "./domutils";
 import { Brick } from "./GameElements/Brick";
+import { Paddle } from "./GameElements/Paddle";
+import { Ball } from "./GameElements/Ball";
 
 export class CanvasView {
   canvas: HTMLCanvasElement;
