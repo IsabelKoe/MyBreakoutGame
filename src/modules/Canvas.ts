@@ -40,7 +40,7 @@ export class CanvasView {
       }
   }
 
-  // displayGameElement Methode erzeugt die unterschiedlichen Elemente im Canvas (bricks, paddle, ball)
+  // displayGameElement Methode erzeugt die unterschiedlichen Elemente im Canvas/stellt sie bildlich dar (bricks, paddle, ball)
   displayGameElement(element: Brick): void {
     if(!element) return;
     else {
@@ -53,5 +53,10 @@ export class CanvasView {
         );
     }
 
+  }
+
+  // drawBricks Methode, um ein Array von unterschiedlichen Bricks im Canvas aufzeichnen zu können
+  drawBricks(bricks: Brick[]): void {
+      bricks.forEach(brick => this.displayGameElement(brick));
   }
 }
