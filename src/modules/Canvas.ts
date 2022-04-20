@@ -1,4 +1,5 @@
 import { canvas, currentScore, startBtn, playerInfo } from "./domutils";
+import { Brick } from "./GameElements/Brick";
 
 export class CanvasView {
   canvas: HTMLCanvasElement;
@@ -37,5 +38,20 @@ export class CanvasView {
       if(this._playerInfo) {
           this._playerInfo.innerHTML = text;
       }
+  }
+
+  // displayGameElement Methode erzeugt die unterschiedlichen Elemente im Canvas (bricks, paddle, ball)
+  displayGameElement(element: Brick): void {
+    if(!element) return;
+    else {
+        this._context?.drawImage(
+            element.getImg(),
+            element.getXPosition(),
+            element.getYPosition(),
+            element.getWidth(),
+            element.getHeight(),
+        );
+    }
+
   }
 }
