@@ -43,4 +43,18 @@ export class Ball {
     getHeight(): number {
         return this._ballSize;
     }
+
+    // Methods to move the ball and to change direction of moving
+    moveBall(): void {
+        this._xPosition += this._xSpeed;
+        this._yPosition += this._ySpeed;
+    }
+
+    changeDirectionX(): void {
+        this._xSpeed = -this._xSpeed;
+    }
+
+    changeDirectionY(): void {
+        this._ySpeed = -this._ySpeed;
+    }
 }
