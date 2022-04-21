@@ -1,6 +1,7 @@
 import { CanvasView } from "./modules/Canvas";
 import { Brick } from "./modules/GameElements/Brick";
 import { Paddle } from "./modules/GameElements/Paddle";
+import { paddleImg, paddleWidth, paddleHeight, paddleStartX, paddleSpeed } from "./modules/Setups/PaddleSetup";
 import { Ball } from "./modules/GameElements/Ball";
 import { createBrickArray } from './modules/BrickArray';
 
@@ -26,6 +27,15 @@ function startGame(game: CanvasView) {
   game.displayPlayerInfo('');
   //Create all bricks
   const bricks = createBrickArray();
+  //Create a paddle
+  const paddle = new Paddle(
+    paddleImg,
+    paddleStartX,
+    game.canvas.height - paddleHeight -5,
+    paddleWidth,
+    paddleHeight,
+    paddleSpeed,
+  );
 
   gameLoop(game, bricks)
 

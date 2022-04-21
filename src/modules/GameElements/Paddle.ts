@@ -54,15 +54,7 @@ export class Paddle {
         return this._movingRight;
     }
 
-    movePaddle(): void {
-        if(this._movingLeft) {
-            this._xPosition -= this._paddleSpeed;
-        }
-        if(this._movingRight) {
-            this._xPosition += this._paddleSpeed;
-        }
-    }
-
+    // im Source Code etwas anders geschrieben
     handleKeyDown(event: KeyboardEvent): void {
         if(event.code === 'ArrowLeft' || event.key === 'ArrowLeft') {
             this._movingLeft = true;
@@ -78,6 +70,15 @@ export class Paddle {
         }
         if(event.code === 'ArrowRight' || event.key === 'ArrowRight') {
             this._movingRight = false;
+        }
+    }
+
+    movePaddle(): void {
+        if(this._movingLeft) {
+            this._xPosition -= this._paddleSpeed;
+        }
+        if(this._movingRight) {
+            this._xPosition += this._paddleSpeed;
         }
     }
 }
