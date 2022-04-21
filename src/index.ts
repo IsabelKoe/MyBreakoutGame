@@ -11,13 +11,22 @@ let score = 0;
 function gameLoop(
   game: CanvasView,
   bricks: Brick [],
-
+  paddle: Paddle,
 ) {
   game.clear();
   game.drawBricks(bricks);
+  game.displayGameElement(paddle);
+
+  //Move paddle and make sure it will stay in the Canvas
+  if (
+      (paddle.getMovingLeft() && paddle.getXPosition() > 0) ||
+      (paddle.getMovingRight() && paddle.getXPosition() < game.canvas.width - paddle.getWidth())
+  ) {
+    paddle.movePaddle();
+  }
 
   // AnimationFrame to create the gameLoop forever and forever
-  requestAnimationFrame(() => gameLoop(game, bricks));
+  requestAnimationFrame(() => gameLoop(game, bricks, paddle));
 };
 
 function startGame(game: CanvasView) {
@@ -37,8 +46,7 @@ function startGame(game: CanvasView) {
     paddleSpeed,
   );
 
-  gameLoop(game, bricks)
-
+  gameLoop(game, bricks, paddle)
 };
 
 const game = new CanvasView();
