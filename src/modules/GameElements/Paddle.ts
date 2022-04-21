@@ -54,8 +54,7 @@ export class Paddle {
         return this._movingRight;
     }
 
-    // im Source Code etwas anders geschrieben
-    handleKeyDown(event: KeyboardEvent): void {
+    handleKeyDown = (event: KeyboardEvent): void => {
         if(event.code === 'ArrowLeft' || event.key === 'ArrowLeft') {
             this._movingLeft = true;
         }
@@ -64,7 +63,7 @@ export class Paddle {
         }
     }
 
-    handleKeyUp(event: KeyboardEvent): void {
+    handleKeyUp = (event: KeyboardEvent): void => {
         if(event.code === 'ArrowLeft' || event.key === 'ArrowLeft') {
             this._movingLeft = false;
         }
