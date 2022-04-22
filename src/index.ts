@@ -1,9 +1,9 @@
-import { CanvasView } from "./modules/Canvas";
+import { CanvasView } from "./modules/GameElements/Canvas";
 import { Brick } from "./modules/GameElements/Brick";
 import { Paddle } from "./modules/GameElements/Paddle";
 import { paddleImg, paddleWidth, paddleHeight, paddleStartX, paddleSpeed } from "./modules/Setups/PaddleSetup";
 import { Ball } from "./modules/GameElements/Ball";
-import { createBrickArray } from './modules/BrickArray';
+import { createBrickArray } from './modules/GameElements/BrickArray';
 import { ballImg, ballSpeed, ballSize, ballXStartPos, ballYStartPos } from "./modules/Setups/BallSetup";
 
 let gameOver = false;
@@ -19,7 +19,7 @@ function gameLoop(
   game.drawBricks(bricks);
   game.displayGameElement(paddle);
   game.displayGameElement(ball);
-
+  
   //Move paddle and make sure it will stay in the Canvas
   if (
       (paddle.getMovingLeft() && paddle.getXPosition() > 0) ||
@@ -30,8 +30,6 @@ function gameLoop(
 
   //Move ball in Canvas
   ball.moveBall();
-
-
 
   // AnimationFrame to create the gameLoop forever and forever
   requestAnimationFrame(() => gameLoop(game, bricks, paddle, ball));
@@ -60,7 +58,7 @@ function startGame(game: CanvasView) {
     ballXStartPos,
     ballYStartPos,
     ballSpeed,
-    (-ballSpeed),
+    -ballSpeed,
   );
 
   gameLoop(game, bricks, paddle, ball)

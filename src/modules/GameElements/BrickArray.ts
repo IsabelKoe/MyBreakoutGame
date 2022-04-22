@@ -1,7 +1,7 @@
-import { LevelOne } from "./Setups/LevelList";
-import { Brick } from "./GameElements/Brick";
-import { brickPadding, brickWidth, brickHeight, brickImages, brickDifficultyLevel } from "./Setups/BrickSetup";
-import { canvasPadding, canvasRows, canvasColumns } from "./Setups/CanvasSetup";
+import { LevelOne } from "./LevelList";
+import { Brick } from "./Brick";
+import { brickPadding, brickWidth, brickHeight, brickImages, brickDifficultyLevel } from "../Setups/BrickSetup";
+import { canvasPadding, canvasRows, canvasColumns } from "../Setups/CanvasSetup";
 
 function createBrickArray(): Brick[] {
     return LevelOne.reduce((accumulator, element, i) => {
