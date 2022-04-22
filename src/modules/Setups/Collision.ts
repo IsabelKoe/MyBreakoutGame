@@ -45,6 +45,7 @@ export class Collision {
     // if bricks dificulty is 1, we have to delete the brick from display
     reduceBricksOnCollision(ball: Ball, bricks: Brick[]): boolean {
         let collision = false;
+        
         bricks.forEach((brick, i) => {
             if(this.checkBallCollidingBrick(ball, brick)) {
                 ball.changeDirectionY();

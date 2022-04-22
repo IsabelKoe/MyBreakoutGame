@@ -44,7 +44,14 @@ function gameLoop(
   ball.moveBall();
 
   collision.checkBallColliding(ball, paddle, game);
-  collision.reduceBricksOnCollision(ball, bricks);
+  const collidingBrick = collision.reduceBricksOnCollision(ball, bricks);
+
+  if(collidingBrick) {
+    score +=1;
+    game.displayScore(score)
+;  }
+
+
 
   // AnimationFrame to create the gameLoop forever and forever
   requestAnimationFrame(() => gameLoop(game, bricks, paddle, ball, collision));
@@ -53,8 +60,8 @@ function gameLoop(
 function startGame(game: CanvasView) {
   //reset displays
   score = 0;
-  game.displayScore(score);
-  game.displayPlayerInfo('');
+  game.displayScore(0);
+  game.displayPlayerInfo('Press Play!');
   // Setup a Collisison instance for game
   const collision = new Collision();
 
