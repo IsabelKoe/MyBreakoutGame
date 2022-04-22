@@ -25,7 +25,7 @@ export class Collision {
         }
         // top wall
         if(ball.getYPosition() < 0) {
-            ball.changeDirectionY;
+            ball.changeDirectionY();
         }
     }
     //check if ball hits a brick

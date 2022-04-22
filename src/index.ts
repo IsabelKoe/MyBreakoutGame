@@ -1,10 +1,11 @@
-import { CanvasView } from "./modules/GameElements/Canvas";
+import { CanvasView } from "./modules/GameElements/CanvasView";
 import { Brick } from "./modules/GameElements/Brick";
 import { Paddle } from "./modules/GameElements/Paddle";
 import { paddleImg, paddleWidth, paddleHeight, paddleStartX, paddleSpeed } from "./modules/Setups/PaddleSetup";
 import { Ball } from "./modules/GameElements/Ball";
 import { createBrickArray } from './modules/GameElements/BrickArray';
 import { ballImg, ballSpeed, ballSize, ballXStartPos, ballYStartPos } from "./modules/Setups/BallSetup";
+import { Collision } from './modules/Setups/Collision';
 
 let gameOver = false;
 let score = 0;
@@ -14,6 +15,7 @@ function gameLoop(
   bricks: Brick [],
   paddle: Paddle,
   ball: Ball,
+  collision: Collision,
 ) {
   game.clear();
   game.drawBricks(bricks);
@@ -31,8 +33,11 @@ function gameLoop(
   //Move ball in Canvas
   ball.moveBall();
 
+  collision.checkBallColliding(ball, paddle, game);
+  collision.reduceBricksOnCollision(ball, bricks);
+
   // AnimationFrame to create the gameLoop forever and forever
-  requestAnimationFrame(() => gameLoop(game, bricks, paddle, ball));
+  requestAnimationFrame(() => gameLoop(game, bricks, paddle, ball, collision));
 };
 
 function startGame(game: CanvasView) {
@@ -40,6 +45,9 @@ function startGame(game: CanvasView) {
   score = 0;
   game.displayScore(score);
   game.displayPlayerInfo('');
+  // Setup a Collisison instance for game
+  const collision = new Collision();
+
   //Create all bricks
   const bricks = createBrickArray();
   //Create a paddle
@@ -61,7 +69,7 @@ function startGame(game: CanvasView) {
     -ballSpeed,
   );
 
-  gameLoop(game, bricks, paddle, ball)
+  gameLoop(game, bricks, paddle, ball, collision)
 };
 
 const game = new CanvasView();
