@@ -15,17 +15,19 @@
     </header>
     <main class="main-grid">
         <div class="grid-header">
-            <button>Enter name</button>
-            <button>Play Game</button>
-            <button>Help</button>
+            <button class="nameBtn">Enter name</button>
+            <button class="playBtn">Play Game</button>
+            <button class="helpBtn">Help</button>
         </div>
         <div id="main" class="grid-gamefield">
-            <canvas id="playfield-canvas" width="1000" height="600"></canvas>
-            <img id="game-background" src="./src/images/background.png"></img>
             <div id="display">
                 <div id="current-score"></div>
-                <button id="start-button">Start Game</button>
-            <div id="player-info">Press play!</div>
+                <!-- <button id="start-button">Start Game</button> -->
+                <div id="player-info">Press play!</div>
+            </div>
+            <div id="playfield">
+                <canvas id="playfield-canvas" width="1000" height="600"></canvas>
+                <img id="game-background" src="./src/images/background.png"></img>
             </div>
         </div>
         <div class="highscore">

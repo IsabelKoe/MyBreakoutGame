@@ -1,7 +1,7 @@
-:root {
+/* :root {
   --width: 1000px;
   --height: 650px;
-}
+} */
 
 header {
     /* background-color: white; */
@@ -16,7 +16,7 @@ header > h1 {
 canvas {
     position: absolute;
     left: 0;
-    top: 0;
+    /* top: 0px; */
     z-index: 10;
     border-top: 1px solid grey;
     border-left: 1px solid grey;
@@ -41,19 +41,20 @@ canvas {
 .highscore >h2 {
     text-align: center;
 }
-#main {
+.grid-gamefield {
+  display: grid;
+  grid-template-rows: 50px auto;
   position: relative;
-  width: 1000px;
+  /* width: 1000px; */
   margin: 0 auto;
-  width: var(--width);
-  height: var(--height);
+  /* width: var(--width);
+  height: var(--height); */
   font-size: 32px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 #display {
-  position: absolute;
-  bottom: 0;
+  grid-row: 1/2;
   display: flex;
   justify-content: space-between;
   width: var(--width);
@@ -62,4 +63,8 @@ canvas {
 #current-score,
 #player-info {
   width: 200px;
+}
+
+#playfield {
+  grid-row: 2/3;
 }
