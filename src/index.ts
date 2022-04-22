@@ -51,7 +51,15 @@ function gameLoop(
     game.displayScore(score)
 ;  }
 
-
+  // Set game won, when all bricks are hit
+  if (bricks.length === 0) {
+    return setGameWin(game);
+  };
+  //Set game over, when ball hits the ground
+  if (ball.getYPosition() > game.canvas.height) {
+    gameOver = true;
+    return setGameOver(game);
+  };
 
   // AnimationFrame to create the gameLoop forever and forever
   requestAnimationFrame(() => gameLoop(game, bricks, paddle, ball, collision));
