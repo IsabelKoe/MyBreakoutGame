@@ -43,7 +43,7 @@ export class CanvasView {
   }
 
   // displayGameElement Methode erzeugt die unterschiedlichen Elemente im Canvas/stellt sie bildlich dar (bricks, paddle, ball)
-  displayGameElement(element: Brick | Paddle): void {
+  displayGameElement(element: Brick | Paddle | Ball): void {
     if(!element) return;
     else {
         this._context?.drawImage(
