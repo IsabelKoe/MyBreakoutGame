@@ -10,6 +10,16 @@ import { Collision } from './modules/Setups/Collision';
 let gameOver = false;
 let score = 0;
 
+function setGameOver(game: CanvasView) {
+  game.displayPlayerInfo('Game Over!');
+  gameOver = false;
+};
+
+function setGameWin(game: CanvasView) {
+  game.displayPlayerInfo('Game Won!');
+  gameOver = false;
+};
+
 function gameLoop(
   game: CanvasView,
   bricks: Brick [],
