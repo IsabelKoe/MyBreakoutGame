@@ -53,6 +53,8 @@ function gameLoop(
 
   // Set game won, when all bricks are hit
   if (bricks.length === 0) {
+    game.clear();
+    game.displayGameElement(paddle);
     return setGameWin(game);
   };
   //Set game over, when ball hits the ground
