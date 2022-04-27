@@ -10,7 +10,9 @@ const btnHelpBtn = document.querySelector(".helpBtn") as HTMLButtonElement;
 const htmlDivGamefield = document.querySelector(".gamefield") as HTMLDivElement;
 const htmlDivDisplay = document.querySelector(".display") as HTMLDivElement;
 const htmlDivPlayfield = document.querySelector(".playfield") as HTMLDivElement;
+const canvas = document.querySelector('canvas') as HTMLCanvasElement;
+const canvasImg = document.querySelector('.game-background') as HTMLImageElement;
 const htmlDivHighscore = document.querySelector(".highscore") as HTMLDivElement;
 
 export { styleSheet, htmlBody, htmlHeader, hmtlMain, htmlDivButtons, btnStartBtn, btnNameBtn, 
-    btnHelpBtn, htmlDivGamefield, htmlDivDisplay, htmlDivPlayfield, htmlDivHighscore}
+    btnHelpBtn, htmlDivGamefield, htmlDivDisplay, htmlDivPlayfield, canvas, canvasImg, htmlDivHighscore}

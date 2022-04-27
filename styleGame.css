@@ -15,12 +15,17 @@ body {
   text-align: center;
   margin-top: 20px;
 }
+.playfield {
+  grid-column: 1/2;
+  grid-row: 1/3;;
+}
 
-canvas#playfield-canvas {
+#playfield-canvas {
   position: absolute;
   left: 0;
   z-index: 10;
   border: 1px solid grey;
+
 }
 
 .main.grid {
@@ -113,11 +118,10 @@ button:after {
   grid-row: 1/3;
   position: relative;
   margin: 0 auto;
-  
 }
 
 .display {
-  grid-row: 1/32;
+  grid-row: 1/3;
   width: var(--width);
   font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
@@ -131,10 +135,6 @@ button:after {
 .highscore > h2 {
   text-align: center;
   background-color: white;
-}
-
-.playfield {
-  grid-row: 1/2;
 }
 
 .footer {

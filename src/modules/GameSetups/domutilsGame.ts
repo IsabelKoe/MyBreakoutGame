@@ -1,10 +1,10 @@
 //import HTML Elements from domutilsStartpage
 import { styleSheet, htmlBody, htmlHeader, hmtlMain, htmlDivButtons, btnStartBtn, btnNameBtn, 
-  btnHelpBtn, htmlDivGamefield, htmlDivDisplay, htmlDivPlayfield, htmlDivHighscore} from '../../domutilsStartpage';
+  btnHelpBtn, htmlDivGamefield, htmlDivDisplay, htmlDivPlayfield, canvas, canvasImg, htmlDivHighscore} from '../../domutilsStartpage';
 
 //Grab or create HTML Elements needed for playing the game
-const canvas =
-  document.getElementById("#playfield-canvas") as HTMLCanvasElement;
+// const canvas =
+//   document.getElementById("#playfield-canvas") as HTMLCanvasElement;
 const currentScore: HTMLObjectElement | null =
   document.querySelector(".current-score");
 const playBtn: HTMLButtonElement | null =
