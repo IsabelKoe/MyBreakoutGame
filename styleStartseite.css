@@ -126,10 +126,3 @@ button:after {
     background-position: 0 0;
   }
 }
-
-/* button:hover {
-  background-color: lightsteelblue;
-  opacity: 1;
-  box-shadow: 10px 15px 15px 0 rgba(255, 255, 255, 0.5);
-  font-weight: bold;
-} */

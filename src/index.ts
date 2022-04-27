@@ -5,6 +5,8 @@ const htmlHeader = document.querySelector(".header") as HTMLElement;
 const hmtlMain = document.querySelector(".main") as HTMLElement;
 const htmlDivButtons = document.querySelector(".buttons") as HTMLDivElement;
 const btnPlayBtn = document.querySelector(".playBtn") as HTMLButtonElement;
+const btnNameBtn = document.querySelector(".nameBtn") as HTMLButtonElement;
+const btnHelpBtn = document.querySelector(".helpBtn") as HTMLButtonElement;
 const htmlDivGamefield = document.querySelector(".gamefield") as HTMLDivElement;
 const htmlDivDisplay = document.querySelector(".display") as HTMLDivElement;
 const htmlDivplayfield = document.querySelector(".playfield") as HTMLDivElement;
@@ -33,9 +35,15 @@ function changeHeader() {
   htmlHeader.innerHTML = "<h1>Breakout Game</h1>";
 }
 
+function changeButtons() {
+btnNameBtn.remove();
+btnHelpBtn.remove();
+}
+
 function changeMain() {
   hmtlMain.classList.add("grid");
   htmlDivButtons.classList.add("grid");
+  changeButtons();
   changeGamefield();
   changeHighscore();
 }
@@ -54,14 +62,4 @@ function changeGamefield() {
     '\
   <canvas class="playfield-canvas" width="1000" height="600"></canvas>\
   <img class="game-background" src="./src/images/background.png"></img>';
-
-  // const htmlDivCurrentScore = document.createElement('div') as HTMLDivElement
-  // htmlDivCurrentScore.classList.add('current-score');
-  // const htmlDivPlayerInfo = document.createElement('div') as HTMLDivElement
-  // htmlDivPlayerInfo.classList.add('player-info');
-  // htmlDivGamefield.appendChild(htmlDivDisplay);
-  // htmlDivDisplay.appendChild(htmlDivCurrentScore);
-  // htmlDivDisplay.appendChild(htmlDivPlayerInfo);
 }
-
-startTheGame();
