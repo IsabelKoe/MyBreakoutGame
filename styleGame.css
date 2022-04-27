@@ -5,37 +5,38 @@ body {
   background-color: black;
   max-width: 100%;
   max-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .header.gamepage > h1 {
   color: whitesmoke;
-    font-size: 40px;
-    text-align: center;
-    margin-top: 20px;
+  font-size: 40px;
+  text-align: center;
+  margin-top: 20px;
 }
 
-
 canvas.playfield-canvas {
-    position: absolute;
-    left: 0;
-    /* top: 0px; */
-    z-index: 10;
-    border: 1px solid grey;
+  position: absolute;
+  left: 0;
+  z-index: 10;
+  border: 1px solid grey;
 }
 
 .main.grid {
-    display: grid;
-    grid-template-columns: 70% 30%;
-    grid-template-rows: 100px 800px;
-    margin: 0 20px 0 20px;
-    grid-gap: 10px;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 120px auto;
+  margin: 0 10px 0 10px;
+  grid-gap: 10px;
 }
 .buttons.grid {
-    position: relative;
-    grid-column: 1/3;
-    text-align: center;
-    align-items: center;
-    height: 90px; 
+  position: relative;
+  grid-column: 2/3;
+  grid-row: 1/2;
+  text-align: center;
+  align-items: center;
+  height: 50px;
 }
 
 button {
@@ -48,7 +49,7 @@ button {
   font-size: 20px;
   width: 200px;
   height: 40px;
-  margin: 20px;
+  margin: 5px;
   cursor: pointer;
   transition-duration: 0.5s;
   z-index: 0;
@@ -56,13 +57,7 @@ button {
 
 button:before {
   content: "";
-  background: linear-gradient(
-    45deg,
-    #002bff,
-    #00ffd5,
-    #00ffd5,
-    #002bff
-  );
+  background: linear-gradient(45deg, #002bff, #00ffd5, #00ffd5, #002bff);
   position: absolute;
   top: -2px;
   left: -2px;
@@ -114,29 +109,37 @@ button:after {
 }
 
 .gamefield.grid {
-  display: grid;
-  grid-template-rows: fit-content 30px;
+  grid-column: 1/2;
+  grid-row: 1/3;
+  /* display: grid;
+  grid-template-rows: fit-content 30px; */
   position: relative;
   margin: 0 auto;
-  font-size: 32px;
-  font-family: Arial, Helvetica, sans-serif;
+  
 }
 
 .display {
-  grid-row: 2/3;
+  grid-row: 1/32;
   /* display: flex;
   justify-content: space-between; */
   width: var(--width);
-  background-color: white;
+  /* background-color: rgba(255, 255, 255, 0.5); */
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 15px;
+  color: whitesmoke;
 }
 
-.current-score,
+/* .current-score,
 .player-info {
   width: 200px;
+} */
+.player-info {
+  margin-bottom: 20px;
 }
-
-.highscore >h2 {
-    text-align: center;
+.highscore > h2 {
+  text-align: center;
+  background-color: white;
 }
 
 .playfield {
@@ -144,7 +147,6 @@ button:after {
 }
 
 .footer {
-  position: fixed;
   bottom: 0;
   width: 100%;
   text-align: center;

@@ -36,6 +36,7 @@ function changeHeader() {
 }
 
 function changeButtons() {
+btnPlayBtn.innerHTML="Play";
 btnNameBtn.remove();
 btnHelpBtn.remove();
 }
@@ -43,6 +44,7 @@ btnHelpBtn.remove();
 function changeMain() {
   hmtlMain.classList.add("grid");
   htmlDivButtons.classList.add("grid");
+  htmlDivButtons.appendChild(htmlDivDisplay);
   changeButtons();
   changeGamefield();
   changeHighscore();
@@ -56,8 +58,8 @@ function changeGamefield() {
   htmlDivGamefield.classList.add("grid");
   htmlDivDisplay.innerHTML =
     '\
-  <div class="current-score"></div> \
-  <div class="player-info">Press play!</div>';
+    <div class="player-info">Please press play!</div> \
+  <div class="current-score">Current Score: 0</div>';
   htmlDivplayfield.innerHTML =
     '\
   <canvas class="playfield-canvas" width="1000" height="600"></canvas>\
