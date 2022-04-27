@@ -1,103 +1,67 @@
-import { CanvasView } from "./modules/GameElements/CanvasView";
-import { Brick } from "./modules/GameElements/Brick";
-import { Paddle } from "./modules/GameElements/Paddle";
-import { paddleImg, paddleWidth, paddleHeight, paddleStartX, paddleSpeed } from "./modules/Setups/PaddleSetup";
-import { Ball } from "./modules/GameElements/Ball";
-import { createBrickArray } from './modules/GameElements/BrickArray';
-import { ballImg, ballSpeed, ballSize, ballXStartPos, ballYStartPos } from "./modules/Setups/BallSetup";
-import { Collision } from './modules/Setups/Collision';
+//grab html elements
+const styleSheet = document.querySelector("link") as HTMLLinkElement;
+const htmlBody = document.querySelector("body") as HTMLBodyElement;
+const htmlHeader = document.querySelector(".header") as HTMLElement;
+const hmtlMain = document.querySelector(".main") as HTMLElement;
+const htmlDivButtons = document.querySelector(".buttons") as HTMLDivElement;
+const btnPlayBtn = document.querySelector(".playBtn") as HTMLButtonElement;
+const htmlDivGamefield = document.querySelector(".gamefield") as HTMLDivElement;
+const htmlDivDisplay = document.querySelector(".display") as HTMLDivElement;
+const htmlDivplayfield = document.querySelector(".playfield") as HTMLDivElement;
+const htmlDivHighscore = document.querySelector(".highscore") as HTMLDivElement;
 
-let gameOver = false;
-let score = 0;
+let onGamepage = false;
 
-function setGameOver(game: CanvasView) {
-  game.displayPlayerInfo('Game Over!');
-  gameOver = false;
-};
+// change page setting / styling of from startpage to gamepage
+function startTheGame() {
+  btnPlayBtn?.addEventListener("click", () => {
+    changeStylesheet();
+    changeHeader();
+    changeMain();
+  });
+  onGamepage = true;
+}
+startTheGame();
 
-function setGameWin(game: CanvasView) {
-  game.displayPlayerInfo('Game Won!');
-  gameOver = false;
-};
+//exchange the linked stylesheet with the stylesheet for the gamepage
+function changeStylesheet() {
+  styleSheet.href = "styleGame.css";
+}
+// change header element for gamepage
+function changeHeader() {
+  htmlHeader.classList.add("gamepage");
+  htmlHeader.innerHTML = "<h1>Breakout Game</h1>";
+}
 
-function gameLoop(
-  game: CanvasView,
-  bricks: Brick [],
-  paddle: Paddle,
-  ball: Ball,
-  collision: Collision,
-) {
-  game.clear();
-  game.drawBricks(bricks);
-  game.displayGameElement(paddle);
-  game.displayGameElement(ball);
-  
-  //Move paddle and make sure it will stay in the Canvas
-  if (
-      (paddle.getMovingLeft() && paddle.getXPosition() > 0) ||
-      (paddle.getMovingRight() && paddle.getXPosition() < game.canvas.width - paddle.getWidth())
-  ) {
-    paddle.movePaddle();
-  };
+function changeMain() {
+  hmtlMain.classList.add("grid");
+  htmlDivButtons.classList.add("grid");
+  changeGamefield();
+  changeHighscore();
+}
 
-  //Move ball in Canvas
-  ball.moveBall();
+function changeHighscore() {
+  htmlDivHighscore.innerHTML = "<h2>Your Highscores:</h2>";
+}
 
-  collision.checkBallColliding(ball, paddle, game);
-  const collidingBrick = collision.reduceBricksOnCollision(ball, bricks);
+function changeGamefield() {
+  htmlDivGamefield.classList.add("grid");
+  htmlDivDisplay.innerHTML =
+    '\
+  <div class="current-score"></div> \
+  <div class="player-info">Press play!</div>';
+  htmlDivplayfield.innerHTML =
+    '\
+  <canvas class="playfield-canvas" width="1000" height="600"></canvas>\
+  <img class="game-background" src="./src/images/background.png"></img>';
 
-  if(collidingBrick) {
-    score +=1;
-    game.displayScore(score)
-;  }
+  // const htmlDivCurrentScore = document.createElement('div') as HTMLDivElement
+  // htmlDivCurrentScore.classList.add('current-score');
+  // const htmlDivPlayerInfo = document.createElement('div') as HTMLDivElement
+  // htmlDivPlayerInfo.classList.add('player-info');
+  // htmlDivGamefield.appendChild(htmlDivDisplay);
+  // htmlDivDisplay.appendChild(htmlDivCurrentScore);
+  // htmlDivDisplay.appendChild(htmlDivPlayerInfo);
+}
 
-  // Set game won, when all bricks are hit
-  if (bricks.length === 0) {
-    game.clear();
-    game.displayGameElement(paddle);
-    return setGameWin(game);
-  };
-  //Set game over, when ball hits the ground
-  if (ball.getYPosition() > game.canvas.height) {
-    gameOver = true;
-    return setGameOver(game);
-  };
-
-  // AnimationFrame to create the gameLoop forever and forever
-  requestAnimationFrame(() => gameLoop(game, bricks, paddle, ball, collision));
-};
-
-function startGame(game: CanvasView) {
-  //reset displays
-  score = 0;
-  game.displayScore(0);
-  game.displayPlayerInfo('Press Play!');
-  // Setup a Collisison instance for game
-  const collision = new Collision();
-
-  //Create all bricks
-  const bricks = createBrickArray();
-  //Create a paddle
-  const paddle = new Paddle(
-    paddleImg,
-    paddleStartX,
-    game.canvas.height - paddleHeight -5,
-    paddleWidth,
-    paddleHeight,
-    paddleSpeed,
-  );
-  //Create a ball
-  const ball = new Ball(
-    ballImg,
-    ballSize,
-    ballXStartPos,
-    ballYStartPos,
-    ballSpeed,
-    -ballSpeed,
-  );
-
-  gameLoop(game, bricks, paddle, ball, collision)
-};
-
-const game = new CanvasView();
-game.onClickStartButton(startGame);
+startTheGame();

@@ -7,14 +7,14 @@ body {
   max-height: 100%;
 }
 
-footer {
+.footer {
   position: fixed;
   bottom: 0;
   width: 100%;
   text-align: center;
 }
 
-footer > p {
+.footer > p {
   color: whitesmoke;
   font-size: 20px;
   display: block;
@@ -22,14 +22,14 @@ footer > p {
   bottom: 0;
 }
 
-.header-startpage p:first-child {
+.header p:first-child {
   color: whitesmoke;
   font-size: 50px;
   display: block;
   text-align: center;
 }
 
-.header-startpage > h1 {
+.header > h1 {
   font-size: 100px;
   text-align: center;
   margin-top: 50px;
@@ -42,7 +42,7 @@ footer > p {
   height: calc(100% - 60px - 150px);
 }
 
-.buttons-startpage {
+.buttons {
   align-content: center;
   margin: auto auto;
   height: fit-content;

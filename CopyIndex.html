@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Breakout-Game</title>
+    <link rel="stylesheet" href="styleGame.css">
+    <script defer src="./build/bundle.js"></script>
+</head>
+
+<body>
+    <header class="header gamepage">
+        <h1>Breakout Game</h1>
+    </header>
+    <main class="main grid">
+        <div class="buttons grid">
+            <button class="nameBtn">Enter name</button>
+            <button class="playBtn">Play Game</button>
+            <button class="helpBtn">Help</button>
+        </div>
+        <div class="gamefield grid">
+            <div class="display">
+                <div class="current-score"></div>
+                <div class="player-info">Press play!</div>
+            </div>
+            <div class="playfield">
+                <canvas class="playfield-canvas" width="1000" height="600"></canvas>
+                <img class="game-background" src="./src/images/background.png"></img>
+            </div>
+        </div>
+        <div class="highscore">
+            <h2>Your Highscores:</h2>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>created by Isabel Köcher | ON21</p>
+    </footer>
+</body>
+
+</html>
