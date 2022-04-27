@@ -1,5 +1,5 @@
 import { styleSheet, htmlBody, htmlHeader, hmtlMain, htmlDivButtons, btnStartBtn, btnNameBtn, 
-  btnHelpBtn, htmlDivGamefield, htmlDivDisplay, htmlDivPlayfield, canvas, canvasImg, htmlDivHighscore} from './domutilsStartpage';
+  btnHelpBtn, htmlDivGamefield, htmlDivDisplay, htmlCurrentScore, htmlPlayerInfo, htmlDivPlayfield, canvas, canvasImg, htmlDivHighscore} from './domutilsStartpage';
 
 let onGamepage = false;
 
@@ -26,8 +26,9 @@ function changeHeader() {
 function changeMain() {
   hmtlMain.classList.add("grid");
   htmlDivButtons.classList.add("grid");
-  htmlDivButtons.appendChild(htmlDivDisplay);
   changeButtons();
+  htmlDivButtons.appendChild(htmlDivDisplay);
+  htmlPlayerInfo.innerHTML="Please Press Play";
   changeGamefield();
   changeHighscore();
 }
@@ -51,6 +52,7 @@ function changeGamefield() {
   canvas.id = 'playfield-canvas';
   canvas.width=1000;
   canvas.height=600;
+  
   // canvasImg.src='./images/background.png';
 //   htmlDivDisplay.innerHTML =
 //     '\
