@@ -16,7 +16,7 @@ body {
   margin-top: 20px;
 }
 
-canvas.playfield-canvas {
+canvas#playfield-canvas {
   position: absolute;
   left: 0;
   z-index: 10;

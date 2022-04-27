@@ -101,6 +101,6 @@ function startGame(game: CanvasView): CanvasView {
 };
 
 const myGame = new CanvasView();
-// myGame.onClickStartButton(startGame);
+myGame.onClickStartButton(startGame);
 
-export {myGame, startGame};
+// export {myGame, startGame};

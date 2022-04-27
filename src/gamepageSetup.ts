@@ -1,11 +1,11 @@
-import { styleSheet, htmlBody, htmlHeader, hmtlMain, htmlDivButtons, btnPlayBtn, btnNameBtn, 
+import { styleSheet, htmlBody, htmlHeader, hmtlMain, htmlDivButtons, btnStartBtn, btnNameBtn, 
   btnHelpBtn, htmlDivGamefield, htmlDivDisplay, htmlDivPlayfield, htmlDivHighscore} from './domutilsStartpage';
 
 let onGamepage = false;
 
 // change page setting / styling of from startpage to gamepage
 function startTheGame() {
-  btnPlayBtn?.addEventListener("click", () => {
+  btnStartBtn?.addEventListener("click", () => {
     changeStylesheet();
     changeHeader();
     changeMain();
@@ -24,9 +24,13 @@ function changeHeader() {
 }
 
 function changeButtons() {
-btnPlayBtn.innerHTML="Play";
+btnStartBtn.remove();
 btnNameBtn.remove();
 btnHelpBtn.remove();
+const btnPlayBtn = document.createElement('button');
+btnPlayBtn.classList.add('btnPlayBtn');
+htmlDivButtons.appendChild(btnPlayBtn);
+btnPlayBtn.innerHTML='Play'
 }
 
 function changeMain() {

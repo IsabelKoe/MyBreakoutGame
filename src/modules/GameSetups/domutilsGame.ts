@@ -1,5 +1,5 @@
 //import HTML Elements from domutilsStartpage
-import { styleSheet, htmlBody, htmlHeader, hmtlMain, htmlDivButtons, btnPlayBtn, btnNameBtn, 
+import { styleSheet, htmlBody, htmlHeader, hmtlMain, htmlDivButtons, btnStartBtn, btnNameBtn, 
   btnHelpBtn, htmlDivGamefield, htmlDivDisplay, htmlDivPlayfield, htmlDivHighscore} from '../../domutilsStartpage';
 
 //Grab or create HTML Elements needed for playing the game
@@ -7,8 +7,8 @@ const canvas =
   document.getElementById("#playfield-canvas") as HTMLCanvasElement;
 const currentScore: HTMLObjectElement | null =
   document.querySelector(".current-score");
-// const startBtn: HTMLButtonElement | null =
-//   document.querySelector(".playBtn");
+const playBtn: HTMLButtonElement | null =
+  document.querySelector(".playBtn");
 const playerInfo: HTMLObjectElement | null = document.querySelector(".player-info");
 const ballImg: HTMLImageElement = document.createElement("img");
 const blueBrickImg: HTMLImageElement = document.createElement("img");
@@ -26,7 +26,7 @@ const paddleImg: HTMLImageElement = document.createElement("img");
 export {
   canvas,
   currentScore,
-  btnPlayBtn,
+  playBtn,
   playerInfo,
   ballImg,
   blueBrickImg,
