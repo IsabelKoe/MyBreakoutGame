@@ -2,7 +2,7 @@
 const canvas: HTMLCanvasElement | null =
   document.querySelector("#playfield-canvas");
 const currentScore: HTMLObjectElement | null =
-  document.querySelector("#current-score");
+  document.querySelector(".current-score");
 const startBtn: HTMLButtonElement | null =
   document.querySelector(".playBtn");
 const playerInfo: HTMLObjectElement | null = document.querySelector("#player-info");

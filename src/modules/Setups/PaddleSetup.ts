@@ -1,4 +1,4 @@
-import { paddleImg } from "../../images/Images";
+import { paddleImg } from "../../images/images";
 // defining width, height, startposition and speed of paddle
 const paddleWidth = 150;
 const paddleHeight = 25;

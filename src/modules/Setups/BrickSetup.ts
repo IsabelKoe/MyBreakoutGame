@@ -1,6 +1,6 @@
 import { canvas } from "./domutilsGame";
 import { canvasPadding, canvasRows, canvasColumns } from "./CanvasSetup";
-import { blueBrickImg, greenBrickImg, purpleBrickImg, redBrickImg, yellowBrickImg } from '../../images/Images';
+import { blueBrickImg, greenBrickImg, purpleBrickImg, redBrickImg, yellowBrickImg } from "../../images/images";
 
 // defining padding, width, height of bricks
 const brickPadding = 5;
