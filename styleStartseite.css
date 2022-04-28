@@ -46,7 +46,7 @@ body {
   align-content: center;
   margin: auto auto;
   height: fit-content;
-  padding: 100px 40px;
+  padding: 70px 40px 40px 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,13 +119,25 @@ button:after {
   display: none;
 }
 
+.player-name {
+  color: whitesmoke;
+  font-size: 30px;
+  display: block;
+  text-align: center;
+  bottom: 0;
+  align-items: flex-end ;
+}
+
 .game-background,
 .player-info,
 .current-score,
-.highscores,
 #playfield-canvas {
   display: none;
 };
+
+#highscore{
+  display: none !important;
+}
 
 
 

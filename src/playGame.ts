@@ -1,62 +1,70 @@
-import { CanvasView } from './modules/CanvasView';
-import { Brick } from './modules/Brick';
-import { Paddle } from './modules/Paddle';
-import { Ball } from './modules/Ball';
-import { Collision } from './modules/Collision';
-import { createBrickArray } from './modules/BrickArray';
-import { ballImg, paddleImg } from './images/images';
-import { paddleHeight, paddleSpeed, paddleStartX, paddleWidth } from './modules/PaddleSetup';
-import { ballSize, ballSpeed, ballXStartPos, ballYStartPos } from './modules/BallSetup';
-import { btnPlayBtn, playerInfo } from './domutils';
+import { CanvasView } from "./modules/CanvasView";
+import { Brick } from "./modules/Brick";
+import { Paddle } from "./modules/Paddle";
+import { Ball } from "./modules/Ball";
+import { Collision } from "./modules/Collision";
+import { createBrickArray } from "./modules/BrickArray";
+import { ballImg, paddleImg } from "./images/images";
+import {
+  paddleHeight,
+  paddleSpeed,
+  paddleStartX,
+  paddleWidth,
+} from "./modules/PaddleSetup";
+import { ballSize, ballXStartPos, ballYStartPos } from "./modules/BallSetup";
+import { btnPlayBtn, playerName } from "./domutils";
 
+let ballSpeed = 5;
 let currentLevel = 1;
 let gameOver = false;
 let score = 0;
 
 export function playTheGame() {
-    console.log('Das Spiel wird gestartet');
-    const myGame = new CanvasView();
-    startGame(myGame);
+  console.log("Das Spiel wird gestartet");
+  const myGame = new CanvasView();
+  startGame(myGame);
 }
 
 function setGameOver(game: CanvasView) {
-    game.displayPlayerInfo('Game Over!');
-    gameOver = false;
-    btnPlayBtn.innerHTML="Try Again";
+  game.displayPlayerInfo("Game Over!");
+  gameOver = false;
+  btnPlayBtn.innerHTML = "Try Again";
 }
 
 function setGameWin(game: CanvasView) {
-    game.displayPlayerInfo('Game Won!');
-    gameOver = false;
-    if(currentLevel <= 5) {
-    btnPlayBtn.innerHTML="Next Level";
-    currentLevel +=1;
-    } else {
-      currentLevel = 1;
-      btnPlayBtn.innerHTML="Play";
-    }
+  game.displayPlayerInfo("Game Won!");
+  gameOver = false;
+  if (currentLevel <= 5) {
+    btnPlayBtn.innerHTML = "Next Level";
+    currentLevel += 1;
+    ballSpeed += 2;
+  } else {
+    currentLevel = 1;
+    btnPlayBtn.innerHTML = "Play";
+  }
 }
 
 function gameLoop(
   game: CanvasView,
-  bricks: Brick [],
+  bricks: Brick[],
   paddle: Paddle,
   ball: Ball,
-  collision: Collision,
+  collision: Collision
 ) {
   game.clear();
   game.drawBricks(bricks);
   game.displayGameElement(paddle);
   game.displayGameElement(ball);
-  game.displayPlayerInfo('');
-  
+  game.displayPlayerInfo("");
+
   //Move paddle and make sure it will stay in the Canvas
   if (
-      (paddle.getMovingLeft() && paddle.getXPosition() > 0) ||
-      (paddle.getMovingRight() && paddle.getXPosition() < game.canvas.width - paddle.getWidth())
+    (paddle.getMovingLeft() && paddle.getXPosition() > 0) ||
+    (paddle.getMovingRight() &&
+      paddle.getXPosition() < game.canvas.width - paddle.getWidth())
   ) {
     paddle.movePaddle();
-  };
+  }
 
   //Move ball in Canvas
   ball.moveBall();
@@ -64,27 +72,26 @@ function gameLoop(
   collision.checkBallColliding(ball, paddle, game);
   const collidingBrick = collision.reduceBricksOnCollision(ball, bricks);
 
-  if(collidingBrick) {
-    score +=1;
-    game.displayScore(score)
-;  }
+  if (collidingBrick) {
+    score += 1;
+    game.displayScore(score);
+  }
 
   // Set game won, when all bricks are hit
   if (bricks.length === 0) {
     game.clear();
     game.displayGameElement(paddle);
     return setGameWin(game);
-
-  };
+  }
   //Set game over, when ball hits the ground
   if (ball.getYPosition() > game.canvas.height) {
     gameOver = true;
     return setGameOver(game);
-  };
+  }
 
   // AnimationFrame to create the gameLoop forever and forever
   requestAnimationFrame(() => gameLoop(game, bricks, paddle, ball, collision));
-};
+}
 
 function startGame(game: CanvasView): CanvasView {
   //reset displays
@@ -100,10 +107,10 @@ function startGame(game: CanvasView): CanvasView {
   const paddle = new Paddle(
     paddleImg,
     paddleStartX,
-    game.canvas.height - paddleHeight -5,
+    game.canvas.height - paddleHeight - 5,
     paddleWidth,
     paddleHeight,
-    paddleSpeed,
+    paddleSpeed
   );
   //Create a ball
   const ball = new Ball(
@@ -112,9 +119,9 @@ function startGame(game: CanvasView): CanvasView {
     ballXStartPos,
     ballYStartPos,
     ballSpeed,
-    -ballSpeed,
+    -ballSpeed
   );
 
-  gameLoop(game, bricks, paddle, ball, collision)
+  gameLoop(game, bricks, paddle, ball, collision);
   return game;
-};
+}

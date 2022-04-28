@@ -150,6 +150,14 @@ button:after {
 .highscore > h2 {
   text-align: center;
   background-color: white;
+  font-size: 30px;
+}
+
+.player-name {
+  color: whitesmoke;
+  font-size: 24px;
+  display: block;
+  bottom: 0;
 }
 
 .footer {
