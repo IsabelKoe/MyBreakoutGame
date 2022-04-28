@@ -17,6 +17,14 @@ export const currentScore = document.querySelector('.current-score') as HTMLElem
 export const playerInfo = document.querySelector('.player-info') as HTMLElement;
 export const highscore = document.querySelector(".highscore") as HTMLElement;
 
+export const ballImg: HTMLImageElement = document.createElement("img");
+export const blueBrickImg: HTMLImageElement = document.createElement("img");
+export const greenBrickImg: HTMLImageElement = document.createElement("img");
+export const purpleBrickImg: HTMLImageElement = document.createElement("img");
+export const redBrickImg: HTMLImageElement = document.createElement("img");
+export const yellowBrickImg: HTMLImageElement = document.createElement("img");
+export const paddleImg: HTMLImageElement = document.createElement("img");
+
 // change styling of page to styleGame.css and adjust classes
 export function changeToGamePage(){
     // add an EventListener to startBtn
