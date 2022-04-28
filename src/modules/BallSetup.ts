@@ -1,4 +1,4 @@
-import { ballImg } from "../../../images/images";
+import { ballImg } from "../images/images";
 // defining size, speed and start position of ball
 const ballSpeed = 5;
 const ballSize = 20;

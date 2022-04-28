@@ -9,11 +9,16 @@ body {
   flex-direction: column;
 }
 
+.header.gamepage > p {
+  display: none;
+}
+
 .header.gamepage > h1 {
   color: whitesmoke;
   font-size: 40px;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 0;
 }
 
 .main.grid {
@@ -104,6 +109,7 @@ button:after {
   margin-bottom: 20px;
   color: whitesmoke;
   float: right;
+  margin-right: 10px;
 }
 
 .current-score {

@@ -1,4 +1,4 @@
-import { canvas, currentScore, playBtn, playerInfo } from "./GameSetups/domutilsGame";
+import { canvas, currentScore, btnPlayBtn, playerInfo } from "../domutils";
 import { Brick } from "./Brick";
 import { Paddle } from "./Paddle";
 import { Ball } from "./Ball";
@@ -6,15 +6,15 @@ import { Ball } from "./Ball";
 export class CanvasView {
   canvas: HTMLCanvasElement;
   private _context: CanvasRenderingContext2D | null;
-  private _currentScore: HTMLObjectElement | null;
+  private _currentScore: HTMLElement | null;
   private _startBtn: HTMLButtonElement | null;
-  private _playerInfo: HTMLObjectElement | null;
+  private _playerInfo: HTMLElement | null;
 
   constructor() {
     this.canvas = canvas as HTMLCanvasElement;
     this._context = this.canvas.getContext("2d");
     this._currentScore = currentScore;
-    this._startBtn = playBtn;
+    this._startBtn = btnPlayBtn;
     this._playerInfo = playerInfo;
   }
 
