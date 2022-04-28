@@ -7,7 +7,9 @@ import { createBrickArray } from './modules/BrickArray';
 import { ballImg, paddleImg } from './images/images';
 import { paddleHeight, paddleSpeed, paddleStartX, paddleWidth } from './modules/PaddleSetup';
 import { ballSize, ballSpeed, ballXStartPos, ballYStartPos } from './modules/BallSetup';
+import { btnPlayBtn, playerInfo } from './domutils';
 
+let currentLevel = 1;
 let gameOver = false;
 let score = 0;
 
@@ -20,11 +22,19 @@ export function playTheGame() {
 function setGameOver(game: CanvasView) {
     game.displayPlayerInfo('Game Over!');
     gameOver = false;
+    btnPlayBtn.innerHTML="Try Again";
 }
 
 function setGameWin(game: CanvasView) {
     game.displayPlayerInfo('Game Won!');
     gameOver = false;
+    if(currentLevel <= 5) {
+    btnPlayBtn.innerHTML="Next Level";
+    currentLevel +=1;
+    } else {
+      currentLevel = 1;
+      btnPlayBtn.innerHTML="Play";
+    }
 }
 
 function gameLoop(
@@ -38,6 +48,7 @@ function gameLoop(
   game.drawBricks(bricks);
   game.displayGameElement(paddle);
   game.displayGameElement(ball);
+  game.displayPlayerInfo('');
   
   //Move paddle and make sure it will stay in the Canvas
   if (
@@ -63,6 +74,7 @@ function gameLoop(
     game.clear();
     game.displayGameElement(paddle);
     return setGameWin(game);
+
   };
   //Set game over, when ball hits the ground
   if (ball.getYPosition() > game.canvas.height) {
@@ -78,12 +90,12 @@ function startGame(game: CanvasView): CanvasView {
   //reset displays
   score = 0;
   game.displayScore(0);
-  game.displayPlayerInfo('Please Press Play!');
+  game.displayPlayerInfo(`Please Press Play!`);
   // Setup a Collisison instance for game
   const collision = new Collision();
 
   //Create all bricks
-  const bricks = createBrickArray();
+  const bricks = createBrickArray(currentLevel);
   //Create a paddle
   const paddle = new Paddle(
     paddleImg,
