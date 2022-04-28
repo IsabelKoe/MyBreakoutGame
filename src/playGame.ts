@@ -1,24 +1,31 @@
-import { CanvasView } from "./modules/GameElements/CanvasView";
-import { Brick } from "./modules/GameElements/Brick";
-import { Paddle } from "./modules/GameElements/Paddle";
-import { paddleImg, paddleWidth, paddleHeight, paddleStartX, paddleSpeed } from "./modules/Setups/PaddleSetup";
-import { Ball } from "./modules/GameElements/Ball";
-import { createBrickArray } from './modules/GameElements/BrickArray';
-import { ballImg, ballSpeed, ballSize, ballXStartPos, ballYStartPos } from "./modules/Setups/BallSetup";
-import { Collision } from './modules/Setups/Collision';
+import { CanvasView } from './modules/CanvasView';
+import { Brick } from './modules/Brick';
+import { Paddle } from './modules/Paddle';
+import { Ball } from './modules/Ball';
+import { Collision } from './modules/Collision';
+import { createBrickArray } from './modules/BrickArray';
+import { ballImg, paddleImg } from './images/images';
+import { paddleHeight, paddleSpeed, paddleStartX, paddleWidth } from './modules/PaddleSetup';
+import { ballSize, ballSpeed, ballXStartPos, ballYStartPos } from './modules/BallSetup';
 
 let gameOver = false;
 let score = 0;
 
+export function playTheGame() {
+    console.log('Das Spiel wird gestartet');
+    const myGame = new CanvasView();
+    startGame(myGame);
+}
+
 function setGameOver(game: CanvasView) {
-  game.displayPlayerInfo('Game Over!');
-  gameOver = false;
-};
+    game.displayPlayerInfo('Game Over!');
+    gameOver = false;
+}
 
 function setGameWin(game: CanvasView) {
-  game.displayPlayerInfo('Game Won!');
-  gameOver = false;
-};
+    game.displayPlayerInfo('Game Won!');
+    gameOver = false;
+}
 
 function gameLoop(
   game: CanvasView,
@@ -67,11 +74,11 @@ function gameLoop(
   requestAnimationFrame(() => gameLoop(game, bricks, paddle, ball, collision));
 };
 
-function startGame(game: CanvasView) {
+function startGame(game: CanvasView): CanvasView {
   //reset displays
   score = 0;
   game.displayScore(0);
-  game.displayPlayerInfo('Press Play!');
+  game.displayPlayerInfo('Please Press Play!');
   // Setup a Collisison instance for game
   const collision = new Collision();
 
@@ -97,7 +104,5 @@ function startGame(game: CanvasView) {
   );
 
   gameLoop(game, bricks, paddle, ball, collision)
+  return game;
 };
-
-const game = new CanvasView();
-game.onClickStartButton(startGame);

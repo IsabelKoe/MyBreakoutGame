@@ -9,18 +9,16 @@ body {
   flex-direction: column;
 }
 
+.header.gamepage > p {
+  display: none;
+}
+
 .header.gamepage > h1 {
   color: whitesmoke;
   font-size: 40px;
   text-align: center;
-  margin-top: 20px;
-}
-
-canvas#playfield-canvas {
-  position: absolute;
-  left: 0;
-  z-index: 10;
-  border: 1px solid grey;
+  margin-top: 10px;
+  margin-bottom: 0;
 }
 
 .main.grid {
@@ -30,6 +28,7 @@ canvas#playfield-canvas {
   margin: 0 10px 0 10px;
   grid-gap: 10px;
 }
+
 .buttons.grid {
   position: relative;
   grid-column: 2/3;
@@ -96,59 +95,61 @@ button:after {
   border-radius: 10px;
 }
 
-@keyframes glowing {
-  0% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 400% 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
+.display {
+  grid-row: 1/3;
+  width: var(--width);
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 15px;
+  color: whitesmoke;
+  padding: 10px;
+}
+
+.player-info {
+  margin-bottom: 20px;
+  color: whitesmoke;
+  float: right;
+  margin-right: 10px;
+}
+
+.current-score {
+  color: whitesmoke;
+  float: left;
 }
 
 .gamefield.grid {
   grid-column: 1/2;
   grid-row: 1/3;
-  /* display: grid;
-  grid-template-rows: fit-content 30px; */
   position: relative;
   margin: 0 auto;
-  
-}
-
-.display {
-  grid-row: 1/32;
-  /* display: flex;
-  justify-content: space-between; */
-  width: var(--width);
-  /* background-color: rgba(255, 255, 255, 0.5); */
-  font-size: 20px;
-  font-family: Arial, Helvetica, sans-serif;
-  margin-top: 15px;
-  color: whitesmoke;
-}
-
-/* .current-score,
-.player-info {
-  width: 200px;
-} */
-.player-info {
-  margin-bottom: 20px;
-  float: right;
-}
-.current-score {
-  color: whitesmoke;
-  float: left;
-}
-.highscore > h2 {
-  text-align: center;
-  background-color: white;
 }
 
 .playfield {
-  grid-row: 1/2;
+  grid-column: 1/2;
+  grid-row: 1/3;;
+}
+
+#playfield-canvas {
+  left: 0;
+  z-index: 10;
+  border: 1px solid grey;
+  grid-column: 1/2;
+  grid-row: 1/3;
+}
+
+.game-background {
+  grid-column: 1/2;
+  grid-row: 1/3;
+  position: relative;
+}
+
+.highscore {
+  padding: 0 20px;
+}
+
+.highscore > h2 {
+  text-align: center;
+  background-color: white;
 }
 
 .footer {
@@ -163,4 +164,17 @@ button:after {
   display: block;
   text-align: center;
   bottom: 0;
+}
+
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }

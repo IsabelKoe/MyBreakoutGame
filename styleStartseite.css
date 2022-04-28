@@ -115,6 +115,20 @@ button:after {
   border-radius: 10px;
 }
 
+.playBtn {
+  display: none;
+}
+
+.game-background,
+.player-info,
+.current-score,
+.highscores,
+#playfield-canvas {
+  display: none;
+};
+
+
+
 @keyframes glowing {
   0% {
     background-position: 0 0;

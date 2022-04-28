@@ -16,17 +16,18 @@
     <main class="main grid">
         <div class="buttons grid">
             <button class="nameBtn">Enter name</button>
-            <button class="playBtn">Play Game</button>
+            <button class="startBtn">Start the Game</button>
             <button class="helpBtn">Help</button>
+            <button class="playBtn">Play</button>
+            <div class="display">
+                <div class="current-score">Current Score: 0</div>
+                <div class="player-info">Please Press Play!</div>
+            </div>
         </div>
-        <div class="gamefield grid">
+        <div class="gamefield">
             <div class="playfield">
                 <canvas id="playfield-canvas" width="1000" height="600"></canvas>
-                <img class="game-background" src="./src/images/background.png"></img>
-            </div>
-            <div class="display">
-                <div class="current-score"></div>
-                <div class="player-info">Press play!</div>
+                <!-- <img class="game-background" src="./src/images/background.png"> -->
             </div>
         </div>
         <div class="highscore">
@@ -37,5 +38,4 @@
         <p>created by Isabel Köcher | ON21</p>
     </footer>
 </body>
-
 </html>

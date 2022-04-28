@@ -1,7 +1,7 @@
-import { Ball } from "../GameElements/Ball";
-import { Paddle } from "../GameElements/Paddle";
-import { Brick } from "../GameElements/Brick";
-import { CanvasView } from "../GameElements/CanvasView";
+import { Ball } from "./Ball";
+import { Paddle } from "./Paddle";
+import { Brick } from "./Brick";
+import { CanvasView } from "./CanvasView";
 // imports only used as types - no instances will be created
 //class to collect all collision methods in one class
 export class Collision {
