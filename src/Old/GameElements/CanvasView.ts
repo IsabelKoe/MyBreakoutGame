@@ -1,4 +1,4 @@
-import { canvas, currentScore, playBtn, playerInfo } from "../GameSetups/domutilsGame";
+import { canvas, currentScore, playBtn, playerInfo } from "./GameSetups/domutilsGame";
 import { Brick } from "./Brick";
 import { Paddle } from "./Paddle";
 import { Ball } from "./Ball";

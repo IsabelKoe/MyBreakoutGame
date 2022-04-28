@@ -19,18 +19,21 @@
             <button class="nameBtn">Enter name</button>
             <button class="startBtn">Start the Game</button>
             <button class="helpBtn">Help</button>
+            <button class="playBtn">Play</button>
+            <div class="display">
+                <div class="current-score">Current Score: 0</div>
+                <div class="player-info">Please Press Play!</div>
+            </div>
         </div>
         <div class="gamefield">
             <div class="playfield">
-                <canvas ></canvas>
-                <img class="game-background"></img>
-            </div>
-            <div class="display">
-                <div class="current-score">Current Score: 0</div>
-                <div class="player-info"></div>
+                <canvas id="playfield-canvas" width="1000" height="600"></canvas>
+                <img class="game-background" src="./src/images/background.png">
             </div>
         </div>
-        <div class="highscore"></div>
+        <div class="highscore">
+            <h2>Your Highscores:</h2>
+        </div>
     </main>
     <footer class="footer">
         <p>created by Isabel Köcher | ON21</p>

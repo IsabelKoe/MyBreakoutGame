@@ -15,20 +15,6 @@ body {
   text-align: center;
   margin-top: 20px;
 }
-.playfield {
-  grid-column: 1/2;
-  grid-row: 1/3;;
-}
-
-#playfield-canvas {
-  /* position: absolute; */
-  left: 0;
-  z-index: 10;
-  border: 1px solid grey;
-  grid-column: 1/2;
-  grid-row: 1/3;;
-
-}
 
 .main.grid {
   display: grid;
@@ -37,6 +23,7 @@ body {
   margin: 0 10px 0 10px;
   grid-gap: 10px;
 }
+
 .buttons.grid {
   position: relative;
   grid-column: 2/3;
@@ -103,25 +90,6 @@ button:after {
   border-radius: 10px;
 }
 
-@keyframes glowing {
-  0% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 400% 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
-}
-
-.gamefield.grid {
-  grid-column: 1/2;
-  grid-row: 1/3;
-  position: relative;
-  margin: 0 auto;
-}
-
 .display {
   grid-row: 1/3;
   width: var(--width);
@@ -141,6 +109,32 @@ button:after {
 .current-score {
   color: whitesmoke;
   float: left;
+}
+
+.gamefield.grid {
+  grid-column: 1/2;
+  grid-row: 1/3;
+  position: relative;
+  margin: 0 auto;
+}
+
+.playfield {
+  grid-column: 1/2;
+  grid-row: 1/3;;
+}
+
+#playfield-canvas {
+  left: 0;
+  z-index: 10;
+  border: 1px solid grey;
+  grid-column: 1/2;
+  grid-row: 1/3;
+}
+
+.game-background {
+  grid-column: 1/2;
+  grid-row: 1/3;
+  position: relative;
 }
 
 .highscore {
@@ -164,4 +158,17 @@ button:after {
   display: block;
   text-align: center;
   bottom: 0;
+}
+
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
