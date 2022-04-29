@@ -16,36 +16,45 @@ export interface Player {
 
 let index = 0;
 let userInput: string;
-export let currentPlayer: Player = { playerId: index, name: "" };
-let playerArray: [Player] = [currentPlayer];
+let mysteryPlayer: Player = { playerId: 99, name: "Mystery Player" };
+export let currentPlayer: Player;
+let playerArray: [Player] = [mysteryPlayer];
+let alreadyExist: boolean = false;
 
 export function askForName() {
+  if (playerArray.length === 1) {
+    localStorage.setItem("player", JSON.stringify(playerArray[0]));
+  }
   userInput = prompt("Please enter your name for the game.") as string;
-  if (userInput != null) {
+  if (userInput === null || userInput === "") {
+    currentPlayer = mysteryPlayer;
+  } else {
     currentPlayer = {
-      playerId: index,
+      playerId: (index += 1),
       name: userInput,
     };
     // check whether the name has been used already
-    checkPlayerName();
-    playerArray.push(currentPlayer);
-  } else {
-    currentPlayer = {
-      playerId: 99,
-      name: "Mystery Player",
-    };
-    playerArray.push(currentPlayer);
+    checkPlayerName(currentPlayer.name);
+    if (alreadyExist === false) {
+      playerArray.push(currentPlayer);
+      localStorage.setItem("player", JSON.stringify(playerArray));
+    }
   }
   playerName.innerHTML = `<p class="player-name">Current Player: ${currentPlayer.name} </p>`;
-  localStorage.setItem("player", JSON.stringify(playerArray));
 }
 
 // check if userinput name already exist in our playerArray
-function checkPlayerName() {
+function checkPlayerName(playerNm: string): boolean {
   for (let player of playerArray) {
-    if (player.name === userInput) {
+    if (player.name === playerNm) {
       console.log("Dein Name wurde bereits gespeichert.");
-      currentPlayer = player;
+      currentPlayer.playerId = player.playerId;
+      currentPlayer.name = player.name;
+      currentPlayer.highscore = player.highscore;
+      alreadyExist = true;
+    } else {
+      alreadyExist = false;
     }
-  } 
+  }
+  return alreadyExist;
 }
