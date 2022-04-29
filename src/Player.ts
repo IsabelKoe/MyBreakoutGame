@@ -1,4 +1,5 @@
-import { playerName } from "./domutils";
+import { playerName, timer } from "./domutils";
+import { time } from "./timer";
 
 // Hier muss noch eine Logik für implementiert werden!
 enum status {
@@ -11,7 +12,7 @@ export interface Player {
   playerId: number;
   name: string;
   status?: status;
-  highscore?: number;
+  highscore?: [{level: number, time: string}];
 }
 
 let index = 0;
@@ -20,8 +21,9 @@ let mysteryPlayer: Player = { playerId: 99, name: "Mystery Player" };
 export let currentPlayer: Player;
 let playerArray: [Player] = [mysteryPlayer];
 let alreadyExist: boolean = false;
+export let nameEntered = false 
 
-export function askForName() {
+export function askForName(): boolean {
   if (playerArray.length === 1) {
     localStorage.setItem("player", JSON.stringify(playerArray[0]));
   }
@@ -41,6 +43,7 @@ export function askForName() {
     }
   }
   playerName.innerHTML = `<p class="player-name">Current Player: ${currentPlayer.name} </p>`;
+  return nameEntered = true;
 }
 
 // check if userinput name already exist in our playerArray
@@ -58,3 +61,21 @@ function checkPlayerName(playerNm: string): boolean {
   }
   return alreadyExist;
 }
+
+//getter for current player's name
+function getPlayerName(player: Player): string {
+  return player.name;
+}
+
+// set time for level in player storage
+// export function storeLevelTime(level: number, time: string) {
+//     let nameOfPlayer = getPlayerName(currentPlayer);
+//     for (let player of playerArray) {
+//       if (player.name === nameOfPlayer) {
+//         currentPlayer.highscore?.push({level, time});
+//         localStorage.setItem("player", JSON.stringify(playerArray))
+//         let newHighscore  = 
+//       }
+//     }
+    
+// }

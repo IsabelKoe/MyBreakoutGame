@@ -24,9 +24,9 @@ export class CanvasView {
   }
 
   // clickStartButton Methode fügt einen EventListener ein & startet Spiel mit der startFunction
-  onClickStartButton(startFunction: (view: CanvasView) => void): void {
-    this._startBtn?.addEventListener("click", () => startFunction(this));
-  }
+  // onClickStartButton(startFunction: (view: CanvasView) => void): void {
+  //   this._startBtn?.addEventListener("click", () => startFunction(this));
+  // }
 
   // displayScore Methode setzt den aktuellen Score unterdem Spielfeld, in dem die Bricks gezählt werden, die getroffen wurden
   displayScore(score: number): void {

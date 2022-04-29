@@ -13,6 +13,8 @@ import {
 } from "./modules/PaddleSetup";
 import { ballSize, ballXStartPos, ballYStartPos } from "./modules/BallSetup";
 import { btnPlayBtn, playerName } from "./domutils";
+import { timerStart, timerStop, resetTimer, time } from './timer';
+import { storeLevelTime } from './Player';
 
 let ballSpeed = 5;
 let currentLevel = 1;
@@ -28,16 +30,21 @@ export function playTheGame() {
 function setGameOver(game: CanvasView) {
   game.displayPlayerInfo("Game Over!");
   gameOver = false;
+  timerStop();
+  resetTimer();
   btnPlayBtn.innerHTML = "Try Again";
 }
 
 function setGameWin(game: CanvasView) {
   game.displayPlayerInfo("Game Won!");
   gameOver = false;
+  timerStop();
+  resetTimer();
   if (currentLevel <= 5) {
     btnPlayBtn.innerHTML = "Next Level";
+    storeLevelTime(currentLevel, time);
     currentLevel += 1;
-    ballSpeed += 2;
+    // ballSpeed += 2;
   } else {
     currentLevel = 1;
     btnPlayBtn.innerHTML = "Play";
@@ -49,8 +56,8 @@ function gameLoop(
   bricks: Brick[],
   paddle: Paddle,
   ball: Ball,
-  collision: Collision
-) {
+  collision: Collision,  
+)  {
   game.clear();
   game.drawBricks(bricks);
   game.displayGameElement(paddle);
@@ -98,6 +105,7 @@ function startGame(game: CanvasView): CanvasView {
   score = 0;
   game.displayScore(0);
   game.displayPlayerInfo(`Please Press Play!`);
+
   // Setup a Collisison instance for game
   const collision = new Collision();
 
@@ -121,7 +129,7 @@ function startGame(game: CanvasView): CanvasView {
     ballSpeed,
     -ballSpeed
   );
-
+  timerStart();  
   gameLoop(game, bricks, paddle, ball, collision);
   return game;
 }

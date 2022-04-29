@@ -1,9 +1,14 @@
-import { changeToGamePage, btnPlayBtn, btnNameBtn, btnStartBtn } from "./domutils";
-import { askForName, currentPlayer, Player } from "./Player";
-import {playTheGame} from "./playGame";
+import { changeToGamePage, btnPlayBtn, btnNameBtn, btnStartBtn, timer } from './domutils';
+import { askForName, nameEntered } from "./Player";
+import {playTheGame } from "./playGame";
 
 btnNameBtn.addEventListener("click", askForName);
-
-btnStartBtn.addEventListener("click", changeToGamePage);
+btnStartBtn.addEventListener("click", () => {
+    if(nameEntered) {
+        changeToGamePage()
+    } else {
+        alert("Please enter a name first! If you click cancel, you will play as Mystery Player.")
+    }
+});
 btnPlayBtn.addEventListener('click', playTheGame)
 

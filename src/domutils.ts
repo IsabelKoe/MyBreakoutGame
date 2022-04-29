@@ -16,6 +16,8 @@ export const currentScore = document.querySelector('.current-score') as HTMLElem
 export const playerInfo = document.querySelector('.player-info') as HTMLElement;
 export const highscore = document.querySelector(".highscore") as HTMLElement;
 export const playerName = document.querySelector(".player-name") as HTMLElement;
+export const timer = document.querySelector(".timer") as HTMLElement;
+
 
 export const ballImg: HTMLImageElement = document.createElement("img");
 export const blueBrickImg: HTMLImageElement = document.createElement("img");
