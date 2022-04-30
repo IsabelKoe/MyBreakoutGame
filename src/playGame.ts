@@ -17,7 +17,7 @@ import { timerStart, timerStop, resetTimer, time } from './timer';
 import { storeLevelTime } from './Player';
 
 let ballSpeed = 5;
-let currentLevel = 1;
+export let currentLevel = 1;
 let gameOver = false;
 let score = 0;
 

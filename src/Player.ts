@@ -1,5 +1,6 @@
 import { playerName, timer } from "./domutils";
 import { time } from "./timer";
+import { currentLevel } from "./playGame";
 
 // Hier muss noch eine Logik für implementiert werden!
 enum status {
@@ -63,19 +64,23 @@ function checkPlayerName(playerNm: string): boolean {
 }
 
 //getter for current player's name
-function getPlayerName(player: Player): string {
-  return player.name;
-}
+// function getPlayerName(player: Player): string {
+//   return player.name;
+// }
 
 // set time for level in player storage
-// export function storeLevelTime(level: number, time: string) {
-//     let nameOfPlayer = getPlayerName(currentPlayer);
-//     for (let player of playerArray) {
-//       if (player.name === nameOfPlayer) {
-//         currentPlayer.highscore?.push({level, time});
-//         localStorage.setItem("player", JSON.stringify(playerArray))
-//         let newHighscore  = 
-//       }
-//     }
+export function storeLevelTime(level: number, time: string) {
+    // let nameOfPlayer = getPlayerName(currentPlayer);
+    for (let player of playerArray) {
+      if (player.name === currentPlayer.name) {
+        currentPlayer.highscore?.push({level, time});
+        console.log(playerArray);
+        localStorage.setItem("player", JSON.stringify(playerArray));
+        let newHighscore  = document.createElement('p');
+        newHighscore.classList.add('highscorelist');
+        newHighscore.innerHTML = `${currentPlayer.name}/${currentLevel}/${time}`;
+        timer.append(newHighscore)
+      }
+    }
     
-// }
+}

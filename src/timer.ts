@@ -1,47 +1,48 @@
-import { timer } from './domutils';
+import { timer } from "./domutils";
 
 let startTime: Date;
 let stopTime: Date;
-let active: boolean = false
+let active: boolean = false;
 let minutes: number = 0;
 let seconds: number = 0;
-export let time: string = `0${minutes}:${seconds}`;
+export let time: string;
 
 function timercount() {
   if (active) {
-    stopTime = new Date()
+    stopTime = new Date();
     displayTime();
-    timer.innerHTML = `<p class="timer">Time: 0${minutes}:${seconds}</p>`
-    setTimeout(()=>{
-      timercount()
-    }, 1000)
+    timer.innerHTML = `<p class="timer">Time: 0${minutes}:${seconds}</p>`;
+    setTimeout(() => {
+      timercount();
+    }, 1000);
   }
 }
 
 function displayTime() {
-    if(seconds<60){
-        seconds +=1
-    } else {
-        minutes +=1;
-        seconds = 0;
-    }
+  if (seconds < 60) {
+    seconds += 1;
+  } else {
+    minutes += 1;
+    seconds = 0;
+  }
 }
 
 export function timerStart() {
-  startTime = new Date()
-  stopTime = stopTime
-  active = true
-  timercount()
+  startTime = new Date();
+  stopTime = stopTime;
+  active = true;
+  timercount();
 }
 
 export function timerStop() {
-  stopTime = new Date()
-  active = false
+  time = `0${minutes}:${seconds}`;
+  stopTime = new Date();
+  active = false;
 }
 
 export function resetTimer() {
-    seconds=0;
-    minutes=0;
+  seconds = 0;
+  minutes = 0;
 }
 
 // let timer2 = null;
@@ -57,7 +58,6 @@ export function resetTimer() {
 //     seconds += 1;
 //     timer.innerHTML = `<p class="timer">Time: ${totalTime}</p>`;
 // }
-
 
 // export function countTime() {
 //   let interval: number;
