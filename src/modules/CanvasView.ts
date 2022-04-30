@@ -1,4 +1,4 @@
-import { canvas, currentScore, btnPlayBtn, playerInfo } from "../domutils";
+import { canvas, currentScore, btnPlayBtn, playerInfo } from "../helpers/domutils";
 import { Brick } from "./Brick";
 import { Paddle } from "./Paddle";
 import { Ball } from "./Ball";
@@ -31,7 +31,7 @@ export class CanvasView {
   // displayScore Methode setzt den aktuellen Score unterdem Spielfeld, in dem die Bricks gezählt werden, die getroffen wurden
   displayScore(score: number): void {
     if (this._currentScore) {
-      this._currentScore.innerHTML = score.toString();
+      this._currentScore.innerHTML = `<p>Current Score; ${score.toString()}`;
     }
   };
 

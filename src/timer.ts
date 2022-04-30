@@ -1,4 +1,4 @@
-import { timer } from "./domutils";
+import { timer } from "./helpers/domutils";
 
 let startTime: Date;
 let stopTime: Date;
@@ -44,43 +44,3 @@ export function resetTimer() {
   seconds = 0;
   minutes = 0;
 }
-
-// let timer2 = null;
-// let totalTime = 0;
-// // let time = new Date();
-// let seconds = 0;
-
-// export function countTime() {
-//     timer2 = setInterval(increment, 100);
-// }
-
-// function increment() {
-//     seconds += 1;
-//     timer.innerHTML = `<p class="timer">Time: ${totalTime}</p>`;
-// }
-
-// export function countTime() {
-//   let interval: number;
-//   let seconds = 0;
-//   incrementSeconds(seconds);
-//   interval = setInterval(incrementSeconds, 1000);
-//   setTimeout(() => {
-//     clearInterval(interval),
-//       (timer.innerHTML = `<p class="timer">Time: ${seconds}</p>`);
-//   });
-// }
-
-// function incrementSeconds(seconds: number) {
-//   seconds += 1;
-//   timer.innerHTML = `<p class="timer">Time: ${seconds}</p>`;
-// }
-
-// var seconds = 0;
-// var el = document.getElementById('seconds-counter');
-
-// function incrementSeconds() {
-//     seconds += 1;
-//     el.innerText = "You have been here for " + seconds + " seconds.";
-// }
-
-// var cancel = setInterval(incrementSeconds, 1000);

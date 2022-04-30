@@ -28,8 +28,9 @@ export const redBrickImg: HTMLImageElement = document.createElement("img");
 export const yellowBrickImg: HTMLImageElement = document.createElement("img");
 export const paddleImg: HTMLImageElement = document.createElement("img");
 
-// function to create a new list element (for highscore list)
-export function createNewListItem(){
+// function to create a new list element (for highscore list) on gamepage
+export function createNewListItem(): HTMLLIElement{
     const liItem: HTMLLIElement = document.createElement("li");
+    return liItem;
 }
 

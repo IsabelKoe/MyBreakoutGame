@@ -1,4 +1,4 @@
-import { canvas } from "../domutils";
+import { canvas } from "../helpers/domutils";
 import { canvasPadding, canvasRows, canvasColumns } from "./CanvasSetup";
 import { blueBrickImg, greenBrickImg, purpleBrickImg, redBrickImg, yellowBrickImg } from './../images/images';
 
