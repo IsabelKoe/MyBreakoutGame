@@ -23,7 +23,7 @@ let _currentLevel;
 let gameOver = false;
 let score = 0;
 
-export function playTheGame(currentPlayer: Player, playerArray: [Player], currentLevel: number, time: string) {
+export function playTheGame(currentPlayer: Player, playerArray: Player[], currentLevel: number, time: string) {
   console.log("Das Spiel wird gestartet");
   const myGame = new CanvasView();
   _currentLevel = currentLevel;
@@ -40,7 +40,7 @@ function setGameOver(game: CanvasView, level: number) {
   displayPlayerArrayHighscore();
 }
 
-function setGameWin(game: CanvasView, currentPlayer: Player, playerArray: [Player], level: number, time: string) {
+function setGameWin(game: CanvasView, currentPlayer: Player, playerArray: Player[], level: number, time: string) {
   game.displayPlayerInfo("Game Won!");
   gameOver = false;
   timerStop();
@@ -64,7 +64,7 @@ function gameLoop(
   ball: Ball,
   collision: Collision,
   currentPlayer: Player,
-  playerArray: [Player],
+  playerArray: Player[],
   level: number,
   time: string 
 )  {
@@ -113,7 +113,7 @@ function gameLoop(
 }
 
 // starts the game
-function startGame(game: CanvasView, currentPlayer: Player, playerArray: [Player], currentLevel: number, time: string): CanvasView {
+function startGame(game: CanvasView, currentPlayer: Player, playerArray: Player[], currentLevel: number, time: string): CanvasView {
   //reset displays
   score = 0;
   game.displayScore(0);

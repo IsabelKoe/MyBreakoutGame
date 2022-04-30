@@ -1,27 +1,41 @@
 import { Player } from "./helpers/playerHelpers";
-import { updateLocalStorage, setDefaultLocalStorage } from './helpers/localStorage';
-import { btnPlayBtn, btnNameBtn, btnStartBtn } from "./helpers/domutils";
+import {
+  updateLocalStorage,
+  setDefaultLocalStorage,
+} from "./helpers/localStorage";
+import { btnPlayBtn, btnNameBtn, btnStartBtn, playerName } from "./helpers/domutils";
 import { askForName } from "./modules/newPlayer";
 import { changeToGamePage } from "./helpers/gamepageSetup";
 import { playTheGame } from "./playGame";
-import { time } from './timer';
+import { time } from "./timer";
 
 let currentPlayer: Player;
-let mysteryPlayer: Player = { playerId: 99, name: "Mystery Player" };
-let playerArray: Player[] = [mysteryPlayer];
-let localStorageArray = JSON.parse(localStorage.getItem("players") || '[]');
+let mysteryPlayer: Player = { name: "Mystery Player" };
+
+let playerList: Player[] = JSON.parse(localStorage.getItem("players") || "[]");
 let nameEntered: boolean = false;
 let currentLevel = 1;
 
 
-//get localStorage
-console.log(localStorageArray);
-if(localStorageArray == null) {
-    console.log(localStorageArray);
-//set default localStorage if localStorage is empty
-    localStorage.setItem("players", JSON.stringify(playerArray));
-    localStorageArray = JSON.parse(localStorage.getItem("players") || "[]");
-  console.log(localStorageArray)
+if (!playerList.length) {
+  //set default localStorage if localStorage is empty
+  localStorage.setItem("players", JSON.stringify([mysteryPlayer]));
+  playerList = JSON.parse(localStorage.getItem("players") || "[]");
+  console.log(playerList);
+}
+
+// TODO: Lösch mich nur zur Erklärung
+function findInArray(
+  playerList: Player[],
+  predicate: (player: Player) => boolean
+): Player | undefined {
+  for (let player of playerList) {
+    if (predicate(player)) {
+      return player;
+    }
+  }
+
+  return undefined;
 }
 
 // create EventListener for Enter Name Button
@@ -29,7 +43,30 @@ if(localStorageArray == null) {
 // Once player entered a name boolen nameEntered is set to true
 // Only then player can start with game
 btnNameBtn.addEventListener("click", () => {
-  askForName(currentPlayer, playerArray, localStorageArray);
+  const name = askForName(playerList);
+
+  //check if player already exists in localStorage
+  const playerFromPlayerList = playerList.find((player, _index, _other) => {
+    if (player.name === name) return true;
+    else false;
+  });
+
+  if (playerFromPlayerList === undefined) {
+    // if not, add new player to playerList
+    const newPlayer = { name: name };
+    playerList.push(newPlayer);
+    currentPlayer = newPlayer;
+    console.log(playerList, 'newPlayer added')
+    localStorage.setItem("players", JSON.stringify(playerList));
+  } else {
+    currentPlayer = playerFromPlayerList;
+  }
+  //   for(let player of playerList) {
+  //       if(player.name === currentPlayer.name){
+  //           currentPlayer = player;
+  //       }
+  //   }
+  playerName.innerHTML = `<p class="player-name">Current Player: ${currentPlayer.name} </p>`;
   nameEntered = true;
 });
 
@@ -48,5 +85,5 @@ btnStartBtn.addEventListener("click", () => {
 
 //create EventListener for Play Button on game page
 btnPlayBtn.addEventListener("click", () => {
-  playTheGame(currentPlayer,playerArray, currentLevel, time);
+  playTheGame(currentPlayer, playerList, currentLevel, time);
 });
