@@ -14,11 +14,12 @@ export const canvasImg = document.querySelector('.game-background') as HTMLImage
 export const display = document.querySelector(".display") as HTMLElement;
 export const currentScore = document.querySelector('.current-score') as HTMLElement;
 export const playerInfo = document.querySelector('.player-info') as HTMLElement;
-export const highscore = document.querySelector(".highscore") as HTMLElement;
 export const playerName = document.querySelector(".player-name") as HTMLElement;
 export const timer = document.querySelector(".timer") as HTMLElement;
+export const highscore = document.querySelector(".highscore") as HTMLElement;
+export const highscoreList = document.querySelector(".highscore-list") as HTMLElement;
 
-
+//Create new image elements for game elements
 export const ballImg: HTMLImageElement = document.createElement("img");
 export const blueBrickImg: HTMLImageElement = document.createElement("img");
 export const greenBrickImg: HTMLImageElement = document.createElement("img");
@@ -27,34 +28,8 @@ export const redBrickImg: HTMLImageElement = document.createElement("img");
 export const yellowBrickImg: HTMLImageElement = document.createElement("img");
 export const paddleImg: HTMLImageElement = document.createElement("img");
 
-// change styling of page to styleGame.css and adjust classes
-export function changeToGamePage(){
-        //insert the new stylesheet
-        changeStyleSheet();
-        //adjust the header
-        changeHeader(); 
-        //adjust the main
-        changeMain();
-}
-
-//exchange stylesheet in html
-function changeStyleSheet(){
-    styleSheet.href = "./src/styles/styleGame.css";
-}
-
-//adjust the header element for game
-function changeHeader() {
-    htmlHeader.classList.add('gamepage');
-    htmlHeader.firstChild?.remove()
-}
-
-//adjust the main element for game
-function changeMain() {
-    hmtlMain.classList.add('grid');
-    htmlDivButtons.classList.add('grid');
-    btnNameBtn.remove();
-    btnStartBtn.remove();
-    btnHelpBtn.remove();
-    gamefield.classList.add('grid');
+// function to create a new list element (for highscore list)
+export function createNewListItem(){
+    const liItem: HTMLLIElement = document.createElement("li");
 }
 
