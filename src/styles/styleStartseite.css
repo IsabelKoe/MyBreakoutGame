@@ -1,5 +1,5 @@
 body {
-  background-image: url("./src/images/background.png");
+  background-image: url("../images/background.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-color: black;
@@ -131,6 +131,7 @@ button:after {
 .game-background,
 .player-info,
 .current-score,
+.highscore-list,
 #playfield-canvas {
   display: none;
 };

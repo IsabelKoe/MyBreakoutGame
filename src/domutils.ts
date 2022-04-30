@@ -39,7 +39,7 @@ export function changeToGamePage(){
 
 //exchange stylesheet in html
 function changeStyleSheet(){
-    styleSheet.href = "styleGame.css";
+    styleSheet.href = "./src/styles/styleGame.css";
 }
 
 //adjust the header element for game

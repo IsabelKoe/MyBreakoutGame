@@ -1,5 +1,5 @@
 body {
-  background-image: url("./src/images/background.png");
+  background-image: url("../images/background.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-color: black;
@@ -158,6 +158,13 @@ button:after {
   font-size: 24px;
   display: block;
   bottom: 0;
+}
+
+.highscore-list {
+  color: whitesmoke;
+  font-size: 24px;
+  display: block;
+  list-style: none;
 }
 
 .footer {
