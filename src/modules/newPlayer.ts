@@ -1,5 +1,5 @@
-import { playerName } from "../helpers/domutils";
-import { Player } from '../helpers/playerHelpers';
+import { playerName, highscoreList } from '../helpers/domutils';
+import { Player } from "../helpers/playerHelpers";
 import {
   addNewPlayer,
   getLocalStorage,
@@ -7,10 +7,7 @@ import {
   displayPlayerArrayHighscore,
 } from "../helpers/localStorage";
 
-
-export function askForName(
-  playerList: Player[]
-): string {
+export function askForName(playerList: Player[]): string {
   //ask player for name and save answer in userInput
   const userInput = prompt("Please enter your name for the game.");
   // if player did not enter any character, then set current player to mysterPlayer from local Storage
@@ -28,28 +25,71 @@ export function setHighscore(
   currentLevel: number,
   time: string
 ) {
-  console.log('init setGameWin Function');
-  // const playerFromPlayerList = playerList.find((player, _index, _other) => {
-  //   if (player.name === currentPlayer.name) return player;
-  //   else undefined;
+  console.log("in setHighscore Function");
+  //get highscore array of current player
+  let highscoreList = currentPlayer.highscore;
+  console.log(highscoreList, "highscore list of current player");
+  //in case there is no highscore yet, set first highscore
+  if (!highscoreList?.length) {
+    highscoreList = [{ level: currentLevel, time: time }];
+  console.log(highscoreList.length, "Highscorelist length");  
+  } else {
+    // if there are already highscores for that player
+    // check if a highscore for the current level exists
+    if (highscoreList.length <= currentLevel) {
+      // if level alread exists, then update the object with the current time
+      highscoreList[(currentLevel - 1)] = {
+        level: currentLevel,
+        time: time,
+      };
+  console.log(highscoreList[(currentLevel -1)], "Highscore for current level");  
 
-  //   if(playerFromPlayerList === player) {
-  //     console.log("HIghscore wird gesetzt")
-  //     currentPlayer.highscore?.push({ level: currentLevel, time: time });
-  //     localStorage.setItem("players", JSON.stringify(playerList));
-  //   } else console.log("Fehler");
-
-  // });
-
-  const  updatedPlayerList = playerList.map(player => {
-    if(player.name === currentPlayer.name){
-      console.log(currentPlayer.name, player.name);
-      return {...player, highscore: [{level: currentLevel, time: time}]};
-
+    } else {
+      // if there is no highscore for this level yet, then add an highscore object with current level and time
+      highscoreList.push({ level: currentLevel, time: time });
+  console.log(highscoreList, "new highscore list of current player");
     }
-    console.log(player);
+  }
+  // update currentplayer highscore
+  currentPlayer.highscore = highscoreList;
+  console.log(currentPlayer.highscore, "highscore list of current player after change");
+
+  const updatedPlayerList = playerList.map(player => {
+    if(player.name === currentPlayer.name) {
+      console.log(currentPlayer.name, player.name);
+      return {...player, highscore: currentPlayer.highscore};
+    }
     return player;
-  })
+  });
+  console.log(updatedPlayerList);
   localStorage.setItem("players", JSON.stringify(updatedPlayerList));
-  console.log(JSON.parse(localStorage.getItem("players") || "[]"));
+  console.log(localStorage.getItem("players"));
+
+
+  
+
 }
+
+// const  updatedPlayerList = playerList.map(player => {
+//   if(player.name === currentPlayer.name){
+//     console.log(currentPlayer.name, player.name);
+
+//       const playerHighscore = player.highscore;
+//       const updatedHighscore = playerHighscore?.map(score => {
+//         if(score.level === currentLevel) {
+//           return {...score, time: time}
+//         } else {
+//           const newScore = {level: currentLevel, time: time};
+//           updatedHighscore?.push(newScore);
+//         }
+//          return score;
+//       })
+
+//     return {...player, highscore: updatedHighscore};
+
+//   }
+//   console.log(player);
+//   return player;
+// })
+// localStorage.setItem("players", JSON.stringify(updatedPlayerList));
+// console.log(JSON.parse(localStorage.getItem("players") || "[]"))

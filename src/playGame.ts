@@ -12,7 +12,7 @@ import {
   paddleWidth,
 } from "./modules/PaddleSetup";
 import { ballSize, ballXStartPos, ballYStartPos } from "./modules/BallSetup";
-import { btnPlayBtn } from "./helpers/domutils";
+import { btnPlayBtn, createNewListItem, highscoreList } from './helpers/domutils';
 import { timerStart, timerStop, resetTimer, } from './timer';
 import { Player } from './helpers/playerHelpers';
 import { displayPlayerArrayHighscore } from "./helpers/localStorage";
@@ -23,10 +23,41 @@ let level = 1;
 let gameOver = false;
 let score = 0;
 
+const removeChilds = (parent: HTMLElement) => {
+  while(parent.lastChild) {
+    parent.removeChild(parent.lastChild)
+  }
+};
+
 export function playTheGame(currentPlayer: Player, playerList: Player[], time: string) {
   console.log("Das Spiel wird gestartet");
   const myGame = new CanvasView();
+
   startGame(myGame, currentPlayer, playerList, time);
+  removeChilds(highscoreList);
+  //TODO display the current highscores of all players
+    //loop over all players in playerlist
+    let atLeastOneHighscore = false;
+    for (let player of playerList) {
+      
+      //if players, have highscores, then display PlayerName: Level Time
+      if (player.highscore !== undefined) {
+        atLeastOneHighscore = true;
+        console.log("in player Highscore loop")
+        //show all highscores in highscore array in html
+        for (let highscore of player.highscore) {
+          const liItem = createNewListItem();
+          liItem.innerHTML = `<pre>${player.name}:   ${highscore.level}   ${highscore.time}</pre>`;
+          highscoreList.appendChild(liItem);
+        }
+      }
+    }
+    // if no player has an highscore yet, show one time in html
+    if(!atLeastOneHighscore) {
+    const liItem = createNewListItem();
+    highscoreList.appendChild(liItem);
+    liItem.innerHTML = "<li>No highscores yet</li>";
+    }
 }
 
 // if player looses the ball, the game will be set to game over

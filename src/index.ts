@@ -81,12 +81,13 @@ btnStartBtn.addEventListener("click", () => {
     //loop over all players in playerlist
     let atLeastOneHighscore = false;
     for (let player of playerList) {
-      
       //if players, have highscores, then display PlayerName: Level Time
       if (player.highscore !== undefined) {
         atLeastOneHighscore = true;
-        console.log("in player Highscore loop")
-        //show all highscore in highscore array in html
+        console.log("in player Highscore loop");
+        console.log(player, player.highscore)
+
+        //show all highscores in highscore array in html
         for (let highscore of player.highscore) {
           const liItem = createNewListItem();
           liItem.innerHTML = `<pre>${player.name}:   ${highscore.level}   ${highscore.time}</pre>`;

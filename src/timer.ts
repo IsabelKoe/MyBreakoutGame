@@ -11,6 +11,7 @@ function timercount() {
   if (active) {
     stopTime = new Date();
     displayTime();
+    time = `0${minutes}:${seconds}`
     timer.innerHTML = `<p class="timer">Time: 0${minutes}:${seconds}</p>`;
     setTimeout(() => {
       timercount();
@@ -35,7 +36,7 @@ export function timerStart() {
 }
 
 export function timerStop() {
-  time = `0${minutes}:${seconds}`;
+  // time = `0${minutes}:${seconds}`;
   stopTime = new Date();
   active = false;
 }
