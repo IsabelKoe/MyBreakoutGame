@@ -110,6 +110,5 @@ btnStartBtn.addEventListener("click", () => {
 
 //create EventListener for Play Button on game page
 btnPlayBtn.addEventListener("click", () => {
-  let startLevel = 1;
-  playTheGame(currentPlayer, playerList, startLevel, time);
+  playTheGame(currentPlayer, playerList, time);
 });
