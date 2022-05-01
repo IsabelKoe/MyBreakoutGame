@@ -8,5 +8,5 @@ enum status {
 export interface Player {
   name: string;
   status?: status;
-  highscore?: [{ level: number; time: string }];
+  highscore?: [{ level: number, time: string }];
 }

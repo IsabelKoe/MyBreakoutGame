@@ -1,9 +1,12 @@
 import { Player } from "./helpers/playerHelpers";
 import {
-  updateLocalStorage,
-  setDefaultLocalStorage,
-} from "./helpers/localStorage";
-import { btnPlayBtn, btnNameBtn, btnStartBtn, playerName } from "./helpers/domutils";
+  btnPlayBtn,
+  btnNameBtn,
+  btnStartBtn,
+  playerName,
+  highscoreList,
+  createNewListItem,
+} from "./helpers/domutils";
 import { askForName } from "./modules/newPlayer";
 import { changeToGamePage } from "./helpers/gamepageSetup";
 import { playTheGame } from "./playGame";
@@ -11,11 +14,8 @@ import { time } from "./timer";
 
 let currentPlayer: Player;
 let mysteryPlayer: Player = { name: "Mystery Player" };
-
 let playerList: Player[] = JSON.parse(localStorage.getItem("players") || "[]");
 let nameEntered: boolean = false;
-let currentLevel = 1;
-
 
 if (!playerList.length) {
   //set default localStorage if localStorage is empty
@@ -56,7 +56,7 @@ btnNameBtn.addEventListener("click", () => {
     const newPlayer = { name: name };
     playerList.push(newPlayer);
     currentPlayer = newPlayer;
-    console.log(playerList, 'newPlayer added')
+    console.log(playerList, "newPlayer added");
     localStorage.setItem("players", JSON.stringify(playerList));
   } else {
     currentPlayer = playerFromPlayerList;
@@ -66,6 +66,8 @@ btnNameBtn.addEventListener("click", () => {
   //           currentPlayer = player;
   //       }
   //   }
+
+  // display currentplayer name in HTML
   playerName.innerHTML = `<p class="player-name">Current Player: ${currentPlayer.name} </p>`;
   nameEntered = true;
 });
@@ -75,6 +77,29 @@ btnStartBtn.addEventListener("click", () => {
   // if player entered a name, page will change to game setup
   if (nameEntered) {
     changeToGamePage();
+    //TODO display the current highscores of all players
+    //loop over all players in playerlist
+    let atLeastOneHighscore = false;
+    for (let player of playerList) {
+      
+      //if players, have highscores, then display PlayerName: Level Time
+      if (player.highscore !== undefined) {
+        atLeastOneHighscore = true;
+        console.log("in player Highscore loop")
+        //show all highscore in highscore array in html
+        for (let highscore of player.highscore) {
+          const liItem = createNewListItem();
+          liItem.innerHTML = `<pre>${player.name}:   ${highscore.level}   ${highscore.time}</pre>`;
+          highscoreList.appendChild(liItem);
+        }
+      }
+    }
+    // if no player has an highscore yet, show one time in html
+    if(!atLeastOneHighscore) {
+    const liItem = createNewListItem();
+    highscoreList.appendChild(liItem);
+    liItem.innerHTML = "<li>No highscores yet</li>";
+    }
     // if player did not enter a name yet, alert will be shown
   } else {
     alert(
@@ -85,5 +110,6 @@ btnStartBtn.addEventListener("click", () => {
 
 //create EventListener for Play Button on game page
 btnPlayBtn.addEventListener("click", () => {
-  playTheGame(currentPlayer, playerList, currentLevel, time);
+  let startLevel = 1;
+  playTheGame(currentPlayer, playerList, startLevel, time);
 });
