@@ -1,7 +1,7 @@
 import { CanvasView } from "./canvas-elements/CanvasView";
 import { Brick } from "./canvas-elements/Brick";
 import { Paddle } from "./canvas-elements/Paddle";
-import { Ball } from "./canvas-elements/Ball";
+import { Ball, setRandomStartPos } from './canvas-elements/Ball';
 import { Collision } from "./canvas-elements/Collision";
 import { createBrickArray } from "./canvas-elements/brick-array";
 import { ballImg, paddleImg } from "../images/images";
@@ -15,6 +15,7 @@ import {
   ballSize,
   ballXStartPos,
   ballYStartPos,
+  randomStartPos,
 } from "./canvas-elements/setup-helpers/ball-setup";
 import { btnPlayBtn, highscoreList, removeChilds } from "./helpers/domutils";
 import { timerStart, timerStop, resetTimer, getTimer } from './timer';
@@ -81,6 +82,17 @@ function startGame(
     ballSpeed,
     -ballSpeed
   );
+  
+  // set a random Ball Position
+  setRandomStartPos(ball);
+  // const randomXNum = randomStartPos();
+  // const randomYNum = randomStartPos();
+  // ball.setXPosition(randomXNum);
+  // ball.setYPosition(randomYNum);
+  const a= ball.getXPosition();
+  const b = ball.getYPosition();
+  console.log("Ball X", a);
+  console.log("Ball y", b);
 
   // start the timer to count how long player needs to solve the current level
   timerStart();
