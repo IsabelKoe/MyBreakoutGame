@@ -1,6 +1,6 @@
-import { canvas } from "../helpers/domutils";
-import { canvasPadding, canvasRows, canvasColumns } from "./CanvasSetup";
-import { blueBrickImg, greenBrickImg, purpleBrickImg, redBrickImg, yellowBrickImg } from './../images/images';
+import { canvas } from "../../helpers/domutils";
+import { canvasPadding, canvasRows, canvasColumns } from "./canvas-setup";
+import { blueBrickImg, greenBrickImg, purpleBrickImg, redBrickImg, yellowBrickImg } from '../../../images/images';
 
 // defining padding, width, height of bricks
 const brickPadding = 5;

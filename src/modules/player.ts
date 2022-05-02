@@ -1,11 +1,11 @@
-import { playerName, highscoreList } from '../helpers/domutils';
-import { Player } from "../helpers/playerHelpers";
+import { playerName, highscoreList } from './helpers/domutils';
+import { Player } from "./helpers/player-helpers";
 import {
   addNewPlayer,
   getLocalStorage,
   checkLocalStorage,
   displayPlayerArrayHighscore,
-} from "../helpers/localStorage";
+} from "./localStorage";
 
 export function askForName(playerList: Player[]): string {
   //ask player for name and save answer in userInput

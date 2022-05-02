@@ -22,7 +22,7 @@ export class CanvasView {
   clear(): void {
     this._context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
-
+  //TODO löschen (noch vom Tutorial)
   // clickStartButton Methode fügt einen EventListener ein & startet Spiel mit der startFunction
   // onClickStartButton(startFunction: (view: CanvasView) => void): void {
   //   this._startBtn?.addEventListener("click", () => startFunction(this));
@@ -31,7 +31,7 @@ export class CanvasView {
   // displayScore Methode setzt den aktuellen Score unterdem Spielfeld, in dem die Bricks gezählt werden, die getroffen wurden
   displayScore(score: number): void {
     if (this._currentScore) {
-      this._currentScore.innerHTML = `<p>Current Score: ${score.toString()}`;
+      this._currentScore.innerHTML = `Current Score: ${score.toString()}`;
     }
   };
 

@@ -1,12 +1,23 @@
-import { Player } from "./playerHelpers";
-import { highscoreList, createNewListItem, playerName } from './domutils';
+import { Player } from "./helpers/player-helpers";
+import { highscoreList, createNewListItem, playerName } from './helpers/domutils';
 
-//set default player into array
-export function setDefaultLocalStorage(localStorageArray: Player[], playerArray: Player[]) {
-  localStorage.setItem("players", JSON.stringify(playerArray));
-  // localStorageArray = JSON.parse(localStorage.getItem("players") || "[]");
-  // console.log(localStorageArray)
+// get localStorage at key "players"
+export function getLocalStorage(): Player[] {
+  const savedPlayerList = JSON.parse(localStorage.getItem("players") || "[]");
+  return savedPlayerList;
+}
+
+//set default localStorage with a random player
+export function setDefaultLocalStorage(defaultPlayer: Player) {
+  localStorage.setItem("players", JSON.stringify([defaultPlayer]));
   }
+
+
+
+
+
+
+
 
 //push array to localstorage
 export function updateLocalStorage(players: Player[]) {
@@ -14,10 +25,7 @@ export function updateLocalStorage(players: Player[]) {
 }
 
 // get playerArray from localStorage
-export function getLocalStorage(): Player[] {
-  const currentPlayerArray = JSON.parse(localStorage.getItem("players") || "[]") as Player[];
-  return currentPlayerArray;
-}
+
 
 // add new player to player array
 export function addNewPlayer(currentPlayer: Player, players: Player[]): Player[] {

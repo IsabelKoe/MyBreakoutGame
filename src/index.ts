@@ -1,4 +1,4 @@
-import { Player } from "./helpers/playerHelpers";
+import { Player } from "./modules/helpers/player-helpers";
 import {
   btnPlayBtn,
   btnNameBtn,
@@ -6,12 +6,15 @@ import {
   playerName,
   highscoreList,
   createNewListItem,
-} from "./helpers/domutils";
-import { askForName } from "./modules/newPlayer";
-import { changeToGamePage } from "./helpers/gamepageSetup";
-import { playTheGame } from "./playGame";
-import { time } from "./timer";
+} from "./modules/helpers/domutils";
+import { askForName } from "./modules/player";
+import { changeToGamePage } from "./modules/helpers/gamepage-setup";
+import { playTheGame } from "./modules/game";
+import { time } from "./modules/timer";
 
+// for a game we need a current player, a default  mystery player
+// a playerlist with all existing players
+// a variable to check whether a name has been entered
 let currentPlayer: Player;
 let mysteryPlayer: Player = { name: "Mystery Player" };
 let playerList: Player[] = JSON.parse(localStorage.getItem("players") || "[]");

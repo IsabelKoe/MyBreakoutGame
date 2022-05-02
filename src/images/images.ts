@@ -6,7 +6,7 @@ import {
   redBrickImg,
   yellowBrickImg,
   paddleImg,
-} from "../helpers/domutils";
+} from "../modules/helpers/domutils";
 
 //Set src to all image elements
 ballImg.src = "src/images/ball.png";

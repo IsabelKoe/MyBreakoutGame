@@ -1,4 +1,4 @@
-import { timer } from "./helpers/domutils";
+import { timer } from "./../modules/helpers/domutils";
 
 let startTime: Date;
 let stopTime: Date;

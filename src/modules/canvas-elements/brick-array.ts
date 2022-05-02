@@ -1,7 +1,8 @@
-import { LevelOne, LevelTwo, LevelThree, LevelFour, LevelFive } from "./LevelList";
+import { LevelOne, LevelTwo, LevelThree, LevelFour, LevelFive } from "../level-list";
 import { Brick } from "./Brick";
-import { brickPadding, brickWidth, brickHeight, brickImages, brickDifficultyLevel } from "./BrickSetup";
-import { canvasPadding, canvasRows, canvasColumns } from "./CanvasSetup";
+import { brickPadding, brickWidth, brickHeight, brickImages, brickDifficultyLevel } from "./setup-helpers/brick-setup";
+import { canvasPadding, canvasRows, canvasColumns } from "./setup-helpers/canvas-setup";
+
 
 //create Array of Levels
 const levels: {[key: number]: number[]} = {
@@ -12,8 +13,8 @@ const levels: {[key: number]: number[]} = {
     5: LevelFive
 }
 
-
-function createBrickArray(currentLevel: number): Brick[] {
+// method to set the bricks according to current level
+export function createBrickArray(currentLevel: number): Brick[] {
     return levels[currentLevel].reduce((accumulator, element, i) => {
         const row = Math.floor((i+1) / canvasColumns);
         const col = i % canvasColumns;
@@ -38,6 +39,4 @@ function createBrickArray(currentLevel: number): Brick[] {
             )
         ] };
     }, [] as Brick[]);
-}
-
-export {createBrickArray };
+};

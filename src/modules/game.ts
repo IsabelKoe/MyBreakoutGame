@@ -1,22 +1,22 @@
-import { CanvasView } from "./modules/CanvasView";
-import { Brick } from "./modules/Brick";
-import { Paddle } from "./modules/Paddle";
-import { Ball } from "./modules/Ball";
-import { Collision } from "./modules/Collision";
-import { createBrickArray } from "./modules/BrickArray";
-import { ballImg, paddleImg } from "./images/images";
+import { CanvasView } from "./canvas-elements/CanvasView";
+import { Brick } from "./canvas-elements/Brick";
+import { Paddle } from "./canvas-elements/Paddle";
+import { Ball } from "./canvas-elements/Ball";
+import { Collision } from "./canvas-elements/Collision";
+import { createBrickArray } from "./canvas-elements/brick-array";
+import { ballImg, paddleImg } from "../images/images";
 import {
   paddleHeight,
   paddleSpeed,
   paddleStartX,
   paddleWidth,
-} from "./modules/PaddleSetup";
-import { ballSize, ballXStartPos, ballYStartPos } from "./modules/BallSetup";
+} from "./canvas-elements/setup-helpers/paddle-setup";
+import { ballSize, ballXStartPos, ballYStartPos } from "./canvas-elements/setup-helpers/ball-setup";
 import { btnPlayBtn, createNewListItem, highscoreList } from './helpers/domutils';
 import { timerStart, timerStop, resetTimer, } from './timer';
-import { Player } from './helpers/playerHelpers';
-import { displayPlayerArrayHighscore } from "./helpers/localStorage";
-import { setHighscore } from './modules/newPlayer';
+import { Player } from './helpers/player-helpers';
+import { displayPlayerArrayHighscore } from "./localStorage";
+import { setHighscore } from './player';
 
 let ballSpeed = 5;
 let level = 1;
@@ -47,7 +47,7 @@ export function playTheGame(currentPlayer: Player, playerList: Player[], time: s
         //show all highscores in highscore array in html
         for (let highscore of player.highscore) {
           const liItem = createNewListItem();
-          liItem.innerHTML = `<pre>${player.name}:   ${highscore.level}   ${highscore.time}</pre>`;
+          liItem.innerHTML = `<pre>${player.name}:       ${highscore.level}       ${highscore.time}</pre>`;
           highscoreList.appendChild(liItem);
         }
       }

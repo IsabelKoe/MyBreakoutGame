@@ -1,3 +1,5 @@
+// ball for game
+// methods to get variables from ball and to move the ball
 export class Ball {
     private _ballImg: HTMLImageElement;
     private _xSpeed: number;

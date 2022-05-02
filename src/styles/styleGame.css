@@ -152,21 +152,29 @@ button:after {
 .highscore > h2 {
   text-align: center;
   background-color: white;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .player-name, .timer, .highscorelist {
   color: whitesmoke;
-  font-size: 24px;
+  font-size: 20px;
   display: block;
   bottom: 0;
 }
 
 .highscore-list {
   color: whitesmoke;
-  font-size: 24px;
+  font-size: 15px;
   display: block;
   list-style: none;
+  text-align: center;
+}
+
+pre {
+  color: whitesmoke;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  text-align:left;
 }
 
 .footer {
