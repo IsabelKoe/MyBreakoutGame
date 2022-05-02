@@ -12,137 +12,31 @@ import {
   paddleWidth,
 } from "./canvas-elements/setup-helpers/paddle-setup";
 import { ballSize, ballXStartPos, ballYStartPos } from "./canvas-elements/setup-helpers/ball-setup";
-import { btnPlayBtn, createNewListItem, highscoreList } from './helpers/domutils';
+import { btnPlayBtn, createNewListItem, highscoreList, removeChilds } from './helpers/domutils';
 import { timerStart, timerStop, resetTimer, } from './timer';
 import { Player } from './helpers/player-helpers';
-import { displayPlayerArrayHighscore } from "./localStorage";
 import { setHighscore } from './player';
+import { displayHighscoreList } from './helpers/gamepage-setup';
+import { updateStorage } from './localStorage';
 
+//TODO check ball Speed variable
 let ballSpeed = 5;
 let level = 1;
 let gameOver = false;
 let score = 0;
 
-const removeChilds = (parent: HTMLElement) => {
-  while(parent.lastChild) {
-    parent.removeChild(parent.lastChild)
-  }
-};
-
 export function playTheGame(currentPlayer: Player, playerList: Player[], time: string) {
   console.log("Das Spiel wird gestartet");
   const myGame = new CanvasView();
-
+  //start the game for the current level
   startGame(myGame, currentPlayer, playerList, time);
   removeChilds(highscoreList);
-  //TODO display the current highscores of all players
-    //loop over all players in playerlist
-    let atLeastOneHighscore = false;
-    for (let player of playerList) {
-      
-      //if players, have highscores, then display PlayerName: Level Time
-      if (player.highscore !== undefined) {
-        atLeastOneHighscore = true;
-        console.log("in player Highscore loop")
-        //show all highscores in highscore array in html
-        for (let highscore of player.highscore) {
-          const liItem = createNewListItem();
-          liItem.innerHTML = `<pre>${player.name}:       ${highscore.level}       ${highscore.time}</pre>`;
-          highscoreList.appendChild(liItem);
-        }
-      }
-    }
-    // if no player has an highscore yet, show one time in html
-    if(!atLeastOneHighscore) {
-    const liItem = createNewListItem();
-    highscoreList.appendChild(liItem);
-    liItem.innerHTML = "<li>No highscores yet</li>";
-    }
-}
-
-// if player looses the ball, the game will be set to game over
-function setGameOver(game: CanvasView) {
-  game.displayPlayerInfo("Game Over!");
-  gameOver = false;
-  timerStop();
-  resetTimer();
-  btnPlayBtn.innerHTML = "Try Again";
-}
-
-function setGameWin(game: CanvasView, currentPlayer: Player, playerList: Player[], currentLevel: number, time: string) {
-  game.displayPlayerInfo("Game Won!");
-  gameOver = false;
-  timerStop();
-  console.log('setGameWin Function');
-  setHighscore(currentPlayer, playerList, currentLevel, time)
-  resetTimer();
-  if (currentLevel <= 5) {
-    btnPlayBtn.innerHTML = "Next Level";
-    level += 1;
-    // ballSpeed += 2;
-  } else {
-    level = 1;
-    btnPlayBtn.innerHTML = "Play";
-  }
-}
-
-function gameLoop(
-  game: CanvasView,
-  bricks: Brick[],
-  paddle: Paddle,
-  ball: Ball,
-  collision: Collision,
-  currentPlayer: Player,
-  playerList: Player[],
-  currentLevel: number,
-  time: string 
-)  {
-  game.clear();
-  game.drawBricks(bricks);
-  game.displayGameElement(paddle);
-  game.displayGameElement(ball);
-  game.displayPlayerInfo("");
-
-  //Move paddle and make sure it will stay in the Canvas
-  if (
-    (paddle.getMovingLeft() && paddle.getXPosition() > 0) ||
-    (paddle.getMovingRight() &&
-      paddle.getXPosition() < game.canvas.width - paddle.getWidth())
-  ) {
-    paddle.movePaddle();
-  }
-
-  //Move ball in Canvas
-  ball.moveBall();
-
-  collision.checkBallColliding(ball, paddle, game);
-  const collidingBrick = collision.reduceBricksOnCollision(ball, bricks);
-
-  // count the collision of ball with bricks and display it in html
-  if (collidingBrick) {
-    score += 1;
-    game.displayScore(score);
-  }
-
-  // Set game won, when all bricks are hit
-  if (bricks.length === 0) {
-    game.clear();
-    game.displayGameElement(paddle);
-    return setGameWin(game,currentPlayer, playerList, currentLevel, time);
-  }
-  //Set game over, when ball hits the ground
-  if (ball.getYPosition() > game.canvas.height) {
-    gameOver = true;
-    return setGameOver(game);
-  }
-
-  // AnimationFrame to create the gameLoop forever and forever
-  requestAnimationFrame(() => gameLoop(game, bricks, paddle, ball, collision, currentPlayer, playerList, currentLevel, time));
-}
+  displayHighscoreList(playerList);
+};
 
 // starts the game
 function startGame(game: CanvasView, currentPlayer: Player, playerList: Player[], time: string): CanvasView {
-  //reset displays
+  //reset displays for level
   const currentLevel = level;
   score = 0;
   game.displayScore(0);
@@ -179,4 +73,93 @@ function startGame(game: CanvasView, currentPlayer: Player, playerList: Player[]
   // starts the game loop function
   gameLoop(game, bricks, paddle, ball, collision, currentPlayer, playerList, currentLevel, time);
   return game;
+};
+
+function gameLoop(
+  game: CanvasView,
+  bricks: Brick[],
+  paddle: Paddle,
+  ball: Ball,
+  collision: Collision,
+  currentPlayer: Player,
+  playerList: Player[],
+  currentLevel: number,
+  time: string 
+)  {
+  // remove last game
+  game.clear();
+  // display game elements in canvas
+  game.drawBricks(bricks);
+  game.displayGameElement(paddle);
+  game.displayGameElement(ball);
+  game.displayPlayerInfo("");
+
+  //Move paddle and make sure it will stay in the Canvas
+  if (
+    (paddle.getMovingLeft() && paddle.getXPosition() > 0) ||
+    (paddle.getMovingRight() &&
+      paddle.getXPosition() < game.canvas.width - paddle.getWidth())
+  ) {
+    paddle.movePaddle();
+  }
+
+  //Move ball in Canvas
+  ball.moveBall();
+
+  //check if ball if ball collides with other game elements
+  collision.checkBallColliding(ball, paddle, game);
+  const collidingBrick = collision.reduceBricksOnCollision(ball, bricks);
+
+  // count the collision of ball with bricks and display it in html
+  if (collidingBrick) {
+    score += 1;
+    game.displayScore(score);
+  }
+
+  // Set game won, when all bricks are hit
+  if (bricks.length === 0) {
+    game.clear();
+    game.displayGameElement(paddle);
+    return setGameWin(game,currentPlayer, playerList, currentLevel, time);
+  }
+
+  //Set game over, when ball hits the ground
+  if (ball.getYPosition() > game.canvas.height) {
+    gameOver = true;
+    return setGameOver(game);
+  }
+
+  // AnimationFrame to create the gameLoop forever and forever
+  requestAnimationFrame(() => gameLoop(game, bricks, paddle, ball, collision, currentPlayer, playerList, currentLevel, time));
+};
+
+// if player looses the ball, the game will be set to game over
+function setGameOver(game: CanvasView) {
+  game.displayPlayerInfo("Game Over!");
+  gameOver = false;
+  timerStop();
+  resetTimer();
+  btnPlayBtn.innerHTML = "Try Again";
 }
+
+function setGameWin(game: CanvasView, currentPlayer: Player, playerList: Player[], currentLevel: number, time: string) {
+  game.displayPlayerInfo("Game Won!");
+  gameOver = false;
+  timerStop();
+  //TODO lösch  mich
+  console.log('setGameWin Function');
+  const updatedPlayerList = setHighscore(currentPlayer, playerList, currentLevel, time);
+  updateStorage(updatedPlayerList);
+  resetTimer();
+  if (currentLevel <= 5) {
+    btnPlayBtn.innerHTML = "Next Level";
+    level += 1;
+    // ballSpeed += 2;
+  } else {
+    level = 1;
+    btnPlayBtn.innerHTML = "Play";
+  }
+}
+
+
+

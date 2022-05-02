@@ -32,5 +32,12 @@ export const paddleImg: HTMLImageElement = document.createElement("img");
 export function createNewListItem(): HTMLLIElement{
     const liItem: HTMLLIElement = document.createElement("li");
     return liItem;
-}
+};
+
+// function to remove all childs from an HTML Element
+export function removeChilds(parent: HTMLElement){
+ while(parent.lastChild) {
+     parent.removeChild(parent.lastChild);
+ };
+};
 
