@@ -1,4 +1,9 @@
-import { canvas, currentScore, btnPlayBtn, playerInfo } from "../helpers/domutils";
+import {
+  canvas,
+  currentScore,
+  btnPlayBtn,
+  playerInfo,
+} from "../helpers/domutils";
 import { Brick } from "./Brick";
 import { Paddle } from "./Paddle";
 import { Ball } from "./Ball";
@@ -22,43 +27,37 @@ export class CanvasView {
   clear(): void {
     this._context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
-  //TODO löschen (noch vom Tutorial)
-  // clickStartButton Methode fügt einen EventListener ein & startet Spiel mit der startFunction
-  // onClickStartButton(startFunction: (view: CanvasView) => void): void {
-  //   this._startBtn?.addEventListener("click", () => startFunction(this));
-  // }
 
   // displayScore Methode setzt den aktuellen Score unterdem Spielfeld, in dem die Bricks gezählt werden, die getroffen wurden
   displayScore(score: number): void {
     if (this._currentScore) {
       this._currentScore.innerHTML = `Current Score: ${score.toString()}`;
     }
-  };
+  }
 
   // displayPlayerInfo Methode setzt den Info Text unter dem Spielfeld für den Spieler entsprechend
   displayPlayerInfo(text: string): void {
-      if(this._playerInfo) {
-          this._playerInfo.innerHTML = text;
-      }
+    if (this._playerInfo) {
+      this._playerInfo.innerHTML = text;
+    }
   }
 
   // displayGameElement Methode erzeugt die unterschiedlichen Elemente im Canvas/stellt sie bildlich dar (bricks, paddle, ball)
   displayGameElement(element: Brick | Paddle | Ball): void {
-    if(!element) return;
+    if (!element) return;
     else {
-        this._context?.drawImage(
-            element.getImg(),
-            element.getXPosition(),
-            element.getYPosition(),
-            element.getWidth(),
-            element.getHeight(),
-        );
+      this._context?.drawImage(
+        element.getImg(),
+        element.getXPosition(),
+        element.getYPosition(),
+        element.getWidth(),
+        element.getHeight()
+      );
     }
-
   }
 
   // drawBricks Methode, um ein Array von unterschiedlichen Bricks im Canvas aufzeichnen zu können
   drawBricks(bricks: Brick[]): void {
-      bricks.forEach(brick => this.displayGameElement(brick));
+    bricks.forEach((brick) => this.displayGameElement(brick));
   }
 }

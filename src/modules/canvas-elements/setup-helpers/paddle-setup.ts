@@ -6,4 +6,4 @@ const paddleHeight = 25;
 const paddleStartX = 450;
 const paddleSpeed = 10;
 
-export { paddleImg, paddleWidth, paddleHeight, paddleStartX, paddleSpeed}
+export { paddleImg, paddleWidth, paddleHeight, paddleStartX, paddleSpeed };

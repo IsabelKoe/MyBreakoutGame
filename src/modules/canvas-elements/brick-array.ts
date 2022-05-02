@@ -1,7 +1,7 @@
 import { LevelOne, LevelTwo, LevelThree, LevelFour, LevelFive } from "../level-list";
 import { Brick } from "./Brick";
 import { brickPadding, brickWidth, brickHeight, brickImages, brickDifficultyLevel } from "./setup-helpers/brick-setup";
-import { canvasPadding, canvasRows, canvasColumns } from "./setup-helpers/canvas-setup";
+import { canvasPadding, canvasColumns } from "./setup-helpers/canvas-setup";
 
 
 //create Array of Levels

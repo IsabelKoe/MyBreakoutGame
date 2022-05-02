@@ -6,10 +6,18 @@ import {
   playerName,
 } from "./modules/helpers/domutils";
 import { askForName } from "./modules/player";
-import { changeToGamePage, displayHighscoreList } from './modules/helpers/gamepage-setup';
+import {
+  changeToGamePage,
+  displayHighscoreList,
+} from "./modules/helpers/gamepage-setup";
 import { playTheGame } from "./modules/game";
 import { time } from "./modules/timer";
-import { getLocalStorage, setDefaultLocalStorage, checkStorageforPlayer, updateStorage } from './modules/localStorage';
+import {
+  getLocalStorage,
+  setDefaultLocalStorage,
+  checkStorageforPlayer,
+  updateStorage,
+} from "./modules/localStorage";
 
 // for a game we need a current player, a default  mystery player
 // a playerlist with all existing players
@@ -25,7 +33,7 @@ if (!playerList.length) {
   setDefaultLocalStorage(mysteryPlayer);
   playerList = getLocalStorage();
   console.log(playerList);
-};
+}
 
 // create EventListener for Enter Name Button
 // On click, player is asked for name
@@ -44,15 +52,12 @@ btnNameBtn.addEventListener("click", () => {
     playerList.push(newPlayer);
     //set currentPlayer to newly created player
     currentPlayer = newPlayer;
-    // TODO lösch mich
-    console.log(playerList, "newPlayer added");
     // update localstorage
     updateStorage(playerList);
   } else {
     //set existing player from storage to currentPlayer
     currentPlayer = playerFromPlayerList;
-  };
-
+  }
   // display currentplayer name in HTML
   playerName.innerHTML = `<p class="player-name">Current Player: ${currentPlayer.name} </p>`;
   nameEntered = true;

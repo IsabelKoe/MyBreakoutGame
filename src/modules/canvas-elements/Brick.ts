@@ -44,6 +44,6 @@ export class Brick {
 
   //Setter Methode, um den Schwierigkeitsgrad eines einzelnen Bricks zu setzen (wie oft er getroffen werden muss bis er verschwindet)
   setBrickDifficulty(difficultyLevel: number) {
-      this._brickDifficulty = difficultyLevel;
+    this._brickDifficulty = difficultyLevel;
   }
 }

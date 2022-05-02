@@ -11,13 +11,17 @@ import {
   paddleStartX,
   paddleWidth,
 } from "./canvas-elements/setup-helpers/paddle-setup";
-import { ballSize, ballXStartPos, ballYStartPos } from "./canvas-elements/setup-helpers/ball-setup";
-import { btnPlayBtn, createNewListItem, highscoreList, removeChilds } from './helpers/domutils';
-import { timerStart, timerStop, resetTimer, } from './timer';
-import { Player } from './helpers/player-helpers';
-import { setHighscore } from './player';
-import { displayHighscoreList } from './helpers/gamepage-setup';
-import { updateStorage } from './localStorage';
+import {
+  ballSize,
+  ballXStartPos,
+  ballYStartPos,
+} from "./canvas-elements/setup-helpers/ball-setup";
+import { btnPlayBtn, highscoreList, removeChilds } from "./helpers/domutils";
+import { timerStart, timerStop, resetTimer } from "./timer";
+import { Player } from "./helpers/player-helpers";
+import { setHighscore } from "./player";
+import { displayHighscoreList } from "./helpers/gamepage-setup";
+import { updateStorage } from "./localStorage";
 
 //TODO check ball Speed variable
 let ballSpeed = 5;
@@ -25,17 +29,26 @@ let level = 1;
 let gameOver = false;
 let score = 0;
 
-export function playTheGame(currentPlayer: Player, playerList: Player[], time: string) {
+export function playTheGame(
+  currentPlayer: Player,
+  playerList: Player[],
+  time: string
+) {
   console.log("Das Spiel wird gestartet");
   const myGame = new CanvasView();
   //start the game for the current level
   startGame(myGame, currentPlayer, playerList, time);
   removeChilds(highscoreList);
   displayHighscoreList(playerList);
-};
+}
 
 // starts the game
-function startGame(game: CanvasView, currentPlayer: Player, playerList: Player[], time: string): CanvasView {
+function startGame(
+  game: CanvasView,
+  currentPlayer: Player,
+  playerList: Player[],
+  time: string
+): CanvasView {
   //reset displays for level
   const currentLevel = level;
   score = 0;
@@ -69,11 +82,21 @@ function startGame(game: CanvasView, currentPlayer: Player, playerList: Player[]
   );
 
   // start the timer to count how long player needs to solve the current level
-  timerStart();  
+  timerStart();
   // starts the game loop function
-  gameLoop(game, bricks, paddle, ball, collision, currentPlayer, playerList, currentLevel, time);
+  gameLoop(
+    game,
+    bricks,
+    paddle,
+    ball,
+    collision,
+    currentPlayer,
+    playerList,
+    currentLevel,
+    time
+  );
   return game;
-};
+}
 
 function gameLoop(
   game: CanvasView,
@@ -84,8 +107,8 @@ function gameLoop(
   currentPlayer: Player,
   playerList: Player[],
   currentLevel: number,
-  time: string 
-)  {
+  time: string
+) {
   // remove last game
   game.clear();
   // display game elements in canvas
@@ -120,7 +143,7 @@ function gameLoop(
   if (bricks.length === 0) {
     game.clear();
     game.displayGameElement(paddle);
-    return setGameWin(game,currentPlayer, playerList, currentLevel, time);
+    return setGameWin(game, currentPlayer, playerList, currentLevel, time);
   }
 
   //Set game over, when ball hits the ground
@@ -130,8 +153,20 @@ function gameLoop(
   }
 
   // AnimationFrame to create the gameLoop forever and forever
-  requestAnimationFrame(() => gameLoop(game, bricks, paddle, ball, collision, currentPlayer, playerList, currentLevel, time));
-};
+  requestAnimationFrame(() =>
+    gameLoop(
+      game,
+      bricks,
+      paddle,
+      ball,
+      collision,
+      currentPlayer,
+      playerList,
+      currentLevel,
+      time
+    )
+  );
+}
 
 // if player looses the ball, the game will be set to game over
 function setGameOver(game: CanvasView) {
@@ -142,13 +177,22 @@ function setGameOver(game: CanvasView) {
   btnPlayBtn.innerHTML = "Try Again";
 }
 
-function setGameWin(game: CanvasView, currentPlayer: Player, playerList: Player[], currentLevel: number, time: string) {
+function setGameWin(
+  game: CanvasView,
+  currentPlayer: Player,
+  playerList: Player[],
+  currentLevel: number,
+  time: string
+) {
   game.displayPlayerInfo("Game Won!");
   gameOver = false;
   timerStop();
-  //TODO lösch  mich
-  console.log('setGameWin Function');
-  const updatedPlayerList = setHighscore(currentPlayer, playerList, currentLevel, time);
+  const updatedPlayerList = setHighscore(
+    currentPlayer,
+    playerList,
+    currentLevel,
+    time
+  );
   updateStorage(updatedPlayerList);
   resetTimer();
   if (currentLevel <= 5) {
@@ -160,6 +204,3 @@ function setGameWin(game: CanvasView, currentPlayer: Player, playerList: Player[
     btnPlayBtn.innerHTML = "Play";
   }
 }
-
-
-
