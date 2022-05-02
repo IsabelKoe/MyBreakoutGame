@@ -21,7 +21,7 @@ export function displayPlayerHighscores(currentPlayer: Player) {
   if (currentPlayer.highscore !== undefined) {
     for (let highscore of currentPlayer.highscore) {
       const liItem = createNewListItem();
-      liItem.innerHTML = `<pre>${currentPlayer.name}:   ${highscore.level}   ${highscore.time}</pre>`;
+      liItem.innerHTML = `<pre>${currentPlayer.name}:  /  ${highscore.level}  /  ${highscore.time}</pre>`;
       highscoreList.appendChild(liItem);
     }
   } else console.log("Error in displayPlayerHighcore function.");

@@ -1,47 +1,45 @@
-import { timer } from "./../modules/helpers/domutils";
+import { timer } from "./helpers/domutils";
 
-let startTime: Date;
-let stopTime: Date;
+let totalSeconds = 0;
 let active: boolean = false;
-let minutes: number = 0;
-let seconds: number = 0;
-export let time: string;
+let minutes: number | string = 0;
+let seconds: number | string = 0;
+let time: string;
 
-function timercount() {
+function countTime() {
   if (active) {
-    stopTime = new Date();
-    displayTime();
-    time = `0${minutes}:${seconds}`;
-    timer.innerHTML = `<p class="timer">Time: 0${minutes}:${seconds}</p>`;
+    ++totalSeconds;
+    minutes = Math.floor(totalSeconds / 60);
+    seconds = totalSeconds - minutes * 60;
+    if (minutes < 10) minutes = "0" + minutes;
+    if (seconds < 10) seconds = "0" + seconds;
+    time = `${minutes}:${seconds}`;
+    timer.innerHTML = `<p class="timer">Time: ${minutes}:${seconds}</p>`;
     setTimeout(() => {
-      timercount();
+      countTime();
     }, 1000);
   }
 }
 
-function displayTime() {
-  if (seconds < 60) {
-    seconds += 1;
-  } else {
-    minutes += 1;
-    seconds = 0;
-  }
-}
-
 export function timerStart() {
-  startTime = new Date();
-  stopTime = stopTime;
   active = true;
-  timercount();
+  countTime();
 }
 
 export function timerStop() {
-  // time = `0${minutes}:${seconds}`;
-  stopTime = new Date();
   active = false;
+  console.log("in timerStopNew", time);
 }
 
 export function resetTimer() {
+  timer.innerHTML = `<p>Time: 00:00</p>`;
+  totalSeconds = 0;
   seconds = 0;
   minutes = 0;
+  console.log(seconds, minutes);
+}
+
+export function getTimer(): string {
+  const levelTimer = time;
+  return levelTimer;
 }

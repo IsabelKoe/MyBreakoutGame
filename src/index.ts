@@ -11,7 +11,6 @@ import {
   displayHighscoreList,
 } from "./modules/helpers/gamepage-setup";
 import { playTheGame } from "./modules/game";
-import { time } from "./modules/timer";
 import {
   getLocalStorage,
   setDefaultLocalStorage,
@@ -79,5 +78,5 @@ btnStartBtn.addEventListener("click", () => {
 
 //create EventListener for Play Button on game page
 btnPlayBtn.addEventListener("click", () => {
-  playTheGame(currentPlayer, playerList, time);
+  playTheGame(currentPlayer, playerList);
 });

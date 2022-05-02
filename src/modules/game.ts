@@ -17,7 +17,7 @@ import {
   ballYStartPos,
 } from "./canvas-elements/setup-helpers/ball-setup";
 import { btnPlayBtn, highscoreList, removeChilds } from "./helpers/domutils";
-import { timerStart, timerStop, resetTimer } from "./timer";
+import { timerStart, timerStop, resetTimer, getTimer } from './timer';
 import { Player } from "./helpers/player-helpers";
 import { setHighscore } from "./player";
 import { displayHighscoreList } from "./helpers/gamepage-setup";
@@ -32,12 +32,14 @@ let score = 0;
 export function playTheGame(
   currentPlayer: Player,
   playerList: Player[],
-  time: string
+  // time: string
 ) {
   console.log("Das Spiel wird gestartet");
   const myGame = new CanvasView();
   //start the game for the current level
-  startGame(myGame, currentPlayer, playerList, time);
+  startGame(myGame, currentPlayer, playerList);
+  //TODO HIer richtig?
+  resetTimer();
   removeChilds(highscoreList);
   displayHighscoreList(playerList);
 }
@@ -47,7 +49,6 @@ function startGame(
   game: CanvasView,
   currentPlayer: Player,
   playerList: Player[],
-  time: string
 ): CanvasView {
   //reset displays for level
   const currentLevel = level;
@@ -93,7 +94,6 @@ function startGame(
     currentPlayer,
     playerList,
     currentLevel,
-    time
   );
   return game;
 }
@@ -107,7 +107,6 @@ function gameLoop(
   currentPlayer: Player,
   playerList: Player[],
   currentLevel: number,
-  time: string
 ) {
   // remove last game
   game.clear();
@@ -143,7 +142,7 @@ function gameLoop(
   if (bricks.length === 0) {
     game.clear();
     game.displayGameElement(paddle);
-    return setGameWin(game, currentPlayer, playerList, currentLevel, time);
+    return setGameWin(game, currentPlayer, playerList, currentLevel);
   }
 
   //Set game over, when ball hits the ground
@@ -163,7 +162,6 @@ function gameLoop(
       currentPlayer,
       playerList,
       currentLevel,
-      time
     )
   );
 }
@@ -173,7 +171,7 @@ function setGameOver(game: CanvasView) {
   game.displayPlayerInfo("Game Over!");
   gameOver = false;
   timerStop();
-  resetTimer();
+  // resetTimerNEW();
   btnPlayBtn.innerHTML = "Try Again";
 }
 
@@ -182,19 +180,18 @@ function setGameWin(
   currentPlayer: Player,
   playerList: Player[],
   currentLevel: number,
-  time: string
 ) {
   game.displayPlayerInfo("Game Won!");
   gameOver = false;
   timerStop();
+  const time = getTimer();
   const updatedPlayerList = setHighscore(
     currentPlayer,
     playerList,
     currentLevel,
-    time
-  );
+    time);
   updateStorage(updatedPlayerList);
-  resetTimer();
+  // resetTimerNEW();
   if (currentLevel <= 5) {
     btnPlayBtn.innerHTML = "Next Level";
     level += 1;
