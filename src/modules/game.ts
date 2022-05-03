@@ -1,45 +1,45 @@
 import { CanvasView } from "./canvas-elements/CanvasView";
 import { Brick } from "./canvas-elements/Brick";
 import { Paddle } from "./canvas-elements/Paddle";
-import { Ball, setRandomStartPos } from './canvas-elements/Ball';
+import { Ball, setRandomStartPos } from "./canvas-elements/Ball";
 import { Collision } from "./canvas-elements/Collision";
 import { createBrickArray } from "./canvas-elements/brick-array";
 import { ballImg, paddleImg } from "../images/images";
 import {
+  defaultPaddleWidth,
   paddleHeight,
-  paddleSpeed,
   paddleStartX,
-  paddleWidth,
+  defaultPaddleSpeed
 } from "./canvas-elements/setup-helpers/paddle-setup";
 import {
+  defaultBallSpeed,
   ballSize,
   ballXStartPos,
   ballYStartPos,
-  randomStartPos,
 } from "./canvas-elements/setup-helpers/ball-setup";
 import { btnPlayBtn, highscoreList, removeChilds } from "./helpers/domutils";
-import { timerStart, timerStop, resetTimer, getTimer } from './timer';
+import { timerStart, timerStop, resetTimer, getTimer } from "./timer";
 import { Player } from "./helpers/player-helpers";
 import { setHighscore } from "./player";
 import { displayHighscoreList } from "./helpers/gamepage-setup";
 import { updateStorage } from "./localStorage";
 
-//TODO check ball Speed variable
-let ballSpeed = 5;
+let ballSpeed = defaultBallSpeed;
+let paddleSpeed = defaultPaddleSpeed;
+let paddleWidth = defaultPaddleWidth;
 let level = 1;
 let gameOver = false;
 let score = 0;
 
 export function playTheGame(
   currentPlayer: Player,
-  playerList: Player[],
+  playerList: Player[]
   // time: string
 ) {
   console.log("Das Spiel wird gestartet");
   const myGame = new CanvasView();
   //start the game for the current level
   startGame(myGame, currentPlayer, playerList);
-  //TODO HIer richtig?
   resetTimer();
   removeChilds(highscoreList);
   displayHighscoreList(playerList);
@@ -49,7 +49,7 @@ export function playTheGame(
 function startGame(
   game: CanvasView,
   currentPlayer: Player,
-  playerList: Player[],
+  playerList: Player[]
 ): CanvasView {
   //reset displays for level
   const currentLevel = level;
@@ -82,14 +82,14 @@ function startGame(
     ballSpeed,
     -ballSpeed
   );
-  
+
   // set a random Ball Position
   setRandomStartPos(ball);
   // const randomXNum = randomStartPos();
   // const randomYNum = randomStartPos();
   // ball.setXPosition(randomXNum);
   // ball.setYPosition(randomYNum);
-  const a= ball.getXPosition();
+  const a = ball.getXPosition();
   const b = ball.getYPosition();
   console.log("Ball X", a);
   console.log("Ball y", b);
@@ -105,7 +105,7 @@ function startGame(
     collision,
     currentPlayer,
     playerList,
-    currentLevel,
+    currentLevel
   );
   return game;
 }
@@ -118,7 +118,7 @@ function gameLoop(
   collision: Collision,
   currentPlayer: Player,
   playerList: Player[],
-  currentLevel: number,
+  currentLevel: number
 ) {
   // remove last game
   game.clear();
@@ -173,7 +173,7 @@ function gameLoop(
       collision,
       currentPlayer,
       playerList,
-      currentLevel,
+      currentLevel
     )
   );
 }
@@ -191,7 +191,7 @@ function setGameWin(
   game: CanvasView,
   currentPlayer: Player,
   playerList: Player[],
-  currentLevel: number,
+  currentLevel: number
 ) {
   game.displayPlayerInfo("Game Won!");
   gameOver = false;
@@ -201,15 +201,43 @@ function setGameWin(
     currentPlayer,
     playerList,
     currentLevel,
-    time);
+    time
+  );
   updateStorage(updatedPlayerList);
-  // resetTimerNEW();
-  if (currentLevel <= 5) {
-    btnPlayBtn.innerHTML = "Next Level";
-    level += 1;
-    // ballSpeed += 2;
-  } else {
-    level = 1;
-    btnPlayBtn.innerHTML = "Play";
+  // adapt the level with ball speed and paddle speed and width
+  switch (currentLevel) {
+    case 1:
+      btnPlayBtn.innerHTML = "Next Level";
+      level += 1;
+      ballSpeed = 6;
+      paddleSpeed = 12;
+      break;
+    case 2:
+      btnPlayBtn.innerHTML = "Next Level";
+      level += 1;
+      ballSpeed = 6;
+      paddleSpeed = 12;
+      paddleWidth = 100;
+      break;
+    case 3:
+      btnPlayBtn.innerHTML = "Next Level";
+      level += 1;
+      ballSpeed = 10;
+      paddleSpeed = 20;
+      paddleWidth = 150;
+      break;
+    case 4:
+      btnPlayBtn.innerHTML = "Next Level";
+      level += 1;
+      ballSpeed = 10;
+      paddleSpeed = 20;
+      paddleWidth = 120;
+      break;
+    default:
+      level = 1;
+      btnPlayBtn.innerHTML = "Play";
+      ballSpeed = defaultBallSpeed;
+      paddleSpeed = defaultPaddleSpeed;
+      paddleWidth = defaultPaddleWidth;
   }
 }
