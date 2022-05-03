@@ -3,7 +3,14 @@ import {
   highscoreList,
   createNewListItem,
 } from "./helpers/domutils";
-import { Player } from "./helpers/player-helpers";
+import { Player, score } from "./helpers/player-helpers";
+import {
+  getLocalStorage,
+  playerHasHighscoreStorage,
+  hasScoreForLevel,
+  getExistingScoreFromStorage,
+  getExistingHighscoreList,
+} from "./localStorage";
 
 export function askForName(playerList: Player[]): string {
   //ask player for name and save answer in userInput
@@ -33,31 +40,57 @@ export function setHighscore(
   currentLevel: number,
   time: string
 ): Player[] {
-  //get highscore array of current player
-  let highscoreList = currentPlayer.highscore;
-  //in case there is no highscore yet, set first highscore
-  if (!highscoreList?.length) {
-    highscoreList = [{ level: currentLevel, time: time }];
+  //create variable for new Highscore List
+  let newHighscoreList: score[] = [{level: 0, time: ''}];
+  // get the current playerlist form local Storage
+  const storagePlayerList = getLocalStorage();
+
+  // check if player has already an highscorelist in storage
+  const hasHighscoreList = playerHasHighscoreStorage(currentPlayer);
+
+  // If player has no HighscoreList
+  if (hasHighscoreList === false) {
+    console.log("No highscore at all for player", currentPlayer);
+    newHighscoreList = [{ level: currentLevel, time: time }];
+
+    // Player has already a Highscore list in local Storage
   } else {
-    // if there are already highscores for that player
-    // check if a highscore for the current level exists
-    if (highscoreList.length <= currentLevel) {
-      // if level alread exists, then update the object with the current time
-      highscoreList[currentLevel - 1] = {
-        level: currentLevel,
-        time: time,
-      };
-    } else {
-      // if there is no highscore for this level yet, then add an highscore object with current level and time
-      highscoreList.push({ level: currentLevel, time: time });
+    //get the existing highscore list for that player
+    const existingHighscoreList = getExistingHighscoreList(
+      currentPlayer,
+      storagePlayerList
+    );
+
+    //Check if player has already a score for the current level
+    const scoreForLevel = hasScoreForLevel(currentPlayer, currentLevel);
+
+    //if player has already a score for that level
+    if (scoreForLevel && existingHighscoreList) {
+      // get the old score
+      const oldScore = getExistingScoreFromStorage(
+        existingHighscoreList,
+        currentLevel
+      );
+      newHighscoreList = existingHighscoreList.map((score) => {
+        if (score.level === oldScore?.level) {
+          // update the old score with the new time for that level and save it to newHighscoreList
+          return { ...score, time: time };
+        }
+        return score;
+      });
+
+      // player has no highscore for this level yet
+    } else if (!scoreForLevel && existingHighscoreList) {
+      // expand existing highscore list with new score for this level
+      const newScore = { level: currentLevel, time: time };
+      existingHighscoreList?.push(newScore);
+      newHighscoreList = existingHighscoreList;
     }
   }
-
-  // update currentplayer highscore in playerList and return updated playerList
   const updatedPlayerList = updatePlayerHighscores(
     currentPlayer,
     playerList,
-    highscoreList
+    newHighscoreList
   );
   return updatedPlayerList;
 }
@@ -65,7 +98,7 @@ export function setHighscore(
 function updatePlayerHighscores(
   currentPlayer: Player,
   playerList: Player[],
-  highscoreList: [{ level: number; time: string }]
+  highscoreList: score []
 ): Player[] {
   currentPlayer.highscore = highscoreList;
   const updatedPlayerList = playerList.map((player) => {

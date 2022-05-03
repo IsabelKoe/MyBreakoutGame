@@ -6,8 +6,13 @@ enum status {
   EXPERT = "Expert",
 }
 
+export interface score {
+  level: number,
+  time: string
+}
+
 export interface Player {
   name: string;
   status?: status;
-  highscore?: [{ level: number; time: string }];
+  highscore?: score[];
 }

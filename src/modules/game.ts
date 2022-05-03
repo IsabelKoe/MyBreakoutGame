@@ -34,7 +34,6 @@ let score = 0;
 export function playTheGame(
   currentPlayer: Player,
   playerList: Player[]
-  // time: string
 ) {
   console.log("Das Spiel wird gestartet");
   displayCurrentLevel(displayLevel, level);
