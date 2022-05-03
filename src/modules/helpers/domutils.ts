@@ -13,6 +13,7 @@ export const canvas = document.querySelector('#playfield-canvas') as HTMLCanvasE
 export const canvasImg = document.querySelector('.game-background') as HTMLImageElement;
 export const display = document.querySelector(".display") as HTMLElement;
 export const currentScore = document.querySelector('.current-score') as HTMLElement;
+export const displayLevel = document.querySelector('.level') as HTMLElement;
 export const playerInfo = document.querySelector('.player-info') as HTMLElement;
 export const playerName = document.querySelector(".player-name") as HTMLElement;
 export const timer = document.querySelector(".timer") as HTMLElement;

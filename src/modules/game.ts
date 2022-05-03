@@ -17,11 +17,11 @@ import {
   ballXStartPos,
   ballYStartPos,
 } from "./canvas-elements/setup-helpers/ball-setup";
-import { btnPlayBtn, highscoreList, removeChilds } from "./helpers/domutils";
+import { btnPlayBtn, highscoreList, removeChilds, displayLevel } from "./helpers/domutils";
 import { timerStart, timerStop, resetTimer, getTimer } from "./timer";
 import { Player } from "./helpers/player-helpers";
 import { setHighscore } from "./player";
-import { displayHighscoreList } from "./helpers/gamepage-setup";
+import { displayHighscoreList, displayCurrentLevel } from './helpers/gamepage-setup';
 import { updateStorage } from "./localStorage";
 
 let ballSpeed = defaultBallSpeed;
@@ -37,6 +37,7 @@ export function playTheGame(
   // time: string
 ) {
   console.log("Das Spiel wird gestartet");
+  displayCurrentLevel(displayLevel, level);
   const myGame = new CanvasView();
   //start the game for the current level
   startGame(myGame, currentPlayer, playerList);

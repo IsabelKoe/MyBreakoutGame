@@ -57,7 +57,7 @@ body {
 button {
   position: relative;
   border-radius: 10px;
-  border: none;
+  border: rgb(111, 253, 230) 0.1px dotted;
   outline: none;
   background-color: black;
   color: whitesmoke;
@@ -131,6 +131,7 @@ button:after {
 }
 
 .game-background,
+.level,
 .player-info,
 .current-score,
 .highscore-list,

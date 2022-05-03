@@ -43,7 +43,7 @@ body {
 button {
   position: relative;
   border-radius: 10px;
-  border: none;
+  border: rgb(111, 253, 230) 0.3px dotted;
   outline: none;
   background-color: black;
   color: whitesmoke;
@@ -104,7 +104,7 @@ button:after {
   font-family: Arial, Helvetica, sans-serif;
   margin-top: 15px;
   color: whitesmoke;
-  padding: 10px;
+  padding: 10px 20px;
 }
 
 .player-info {
@@ -151,11 +151,11 @@ button:after {
 
 .highscore > h2 {
   text-align: center;
-  background-color: white;
+  background-color: whitesmoke;
   font-size: 25px;
 }
 
-.player-name, .timer, .highscorelist {
+.player-name, .timer, .level {
   color: whitesmoke;
   font-size: 20px;
   display: block;

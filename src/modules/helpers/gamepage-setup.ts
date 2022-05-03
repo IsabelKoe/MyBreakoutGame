@@ -43,6 +43,11 @@ export function displayHighscoreList(playerList: Player[]) {
   }
 }
 
+// display the current level in HTML
+export function displayCurrentLevel(htmlElement: HTMLElement, level: number) {
+  htmlElement.innerHTML = `<p class="level">Current Level: ${level}</p>`
+}
+
 //exchange stylesheet in html
 function changeStyleSheet() {
   styleSheet.href = "./src/styles/styleGame.css";
