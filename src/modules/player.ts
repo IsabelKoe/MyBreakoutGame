@@ -18,57 +18,16 @@ const isVisible = "is-visible";
 let userInput: string;
 let gotInput: boolean;
 
-export async function askForName(playerList: Player[]) {
-  userInput= '';
-  gotInput;
-  openNameModal();
-  await closeModal().then(()=>{
-    if (userInput === null || userInput === "") {
-      console.log("Input ist leer", nameInput.value)
-      return playerList[0].name;
-    } else {
-      console.log("Input ist nciht leer", nameInput.value)
-      return userInput;
-    }
-  }); return userInput
-  //  return playerList[0].name;
-  //ask player for name and save answer in userInput
-  // const userInput = prompt("Please enter your name for the game.");
-  // // if player did not enter any character, then set current player to mysterPlayer from local Storage
-  // if (userInput === null || userInput === "") {
-  //   return playerList[0].name;
-  // }
+export function askForName(playerList: Player[]) {
+  // ask player for name and save answer in userInput
+  const userInput = prompt("Please enter your name for the game.");
+  // if player did not enter any character, then set current player to mysterPlayer from local Storage
+  if (userInput === null || userInput === "") {
+    return playerList[0].name;
+  }
   // otherwise return userInput
-  // return userInput;
+  return userInput;
 }
-
-export function openNameModal(){
-  if (nameModal) nameModal.classList.add(isVisible);
-}
-
-function closeModal(){
-  return new Promise((resolve, reject) => {
-    if(!gotInput) {
-      userInput = '';
-      resolve;
-    } else if(gotInput) {
-      userInput = nameInput.value;
-      resolve;
-    }
-
-})}
-
-exitName.addEventListener("click", function (): boolean {
-  if (nameModal) nameModal.classList.remove(isVisible);
-  console.log("Cancel", nameInput.value);
-  return gotInput = false;
-});
-saveName.addEventListener("click", function (): boolean {
-  if (nameModal) nameModal.classList.remove(isVisible);
-  console.log("Save", nameInput.value);
-  return gotInput = true;
-});
-
 
 export function displayPlayerHighscores(currentPlayer: Player) {
   //show all highscores in highscore array in html

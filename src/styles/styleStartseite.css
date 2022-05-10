@@ -117,7 +117,7 @@ button:after {
   border-radius: 10px;
 }
 
-#close-help-modal, #close-name-modal {
+#close-help-modal {
   width: 50px !important;
 }
 
@@ -170,7 +170,7 @@ button:after {
   justify-content: space-between;
 }
 
-.help-modal-content, .name-modal-content {
+.help-modal-content {
   font-family: 'Roboto', sans-serif;
 }
  
