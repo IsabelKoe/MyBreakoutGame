@@ -1,11 +1,8 @@
 import {
-  playerName,
   highscoreList,
   createNewListItem,
-  nameModal,
 } from "./helpers/domutils";
 import { Player, score } from "./helpers/player-helpers";
-import { exitName, nameInput, saveName } from "./helpers/domutils";
 import {
   getLocalStorage,
   playerHasHighscoreStorage,
