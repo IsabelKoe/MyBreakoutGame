@@ -53,6 +53,7 @@ export class Ball {
     this._xPosition = randomNumber;
   }
 
+  //TODO lösch mich??
   setYPosition(randomNumber: number){
     this._yPosition = randomNumber;
   }

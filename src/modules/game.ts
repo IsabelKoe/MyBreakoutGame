@@ -28,6 +28,8 @@ let ballSpeed = defaultBallSpeed;
 let paddleSpeed = defaultPaddleSpeed;
 let paddleWidth = defaultPaddleWidth;
 let level = 1;
+
+//TODO lösch mich
 let gameOver = false;
 let score = 0;
 
@@ -205,6 +207,7 @@ function setGameWin(
   );
   updateStorage(updatedPlayerList);
   // adapt the level with ball speed and paddle speed and width
+  //TODO in Funktion changeBallandPaddle auslagern oder diese Funktion in level-list löschen!
   switch (currentLevel) {
     case 1:
       btnPlayBtn.innerHTML = "Next Level";

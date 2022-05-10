@@ -12,6 +12,8 @@ export class CanvasView {
   canvas: HTMLCanvasElement;
   private _context: CanvasRenderingContext2D | null;
   private _currentScore: HTMLElement | null;
+
+  //TODO lösch mich!
   private _startBtn: HTMLButtonElement | null;
   private _playerInfo: HTMLElement | null;
 

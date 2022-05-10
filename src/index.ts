@@ -11,6 +11,8 @@ import {
   displayHighscoreList,
 } from "./modules/helpers/gamepage-setup";
 import { playTheGame } from "./modules/game";
+import { btnHelpBtn } from './modules/helpers/domutils';
+import { openHelpModal } from './modules/helpBtn';
 import {
   getLocalStorage,
   setDefaultLocalStorage,
@@ -39,7 +41,7 @@ if (!playerList.length) {
 // Once player entered a name boolen nameEntered is set to true
 // Only then player can start with game
 btnNameBtn.addEventListener("click", () => {
-  const name = askForName(playerList);
+  const name = askForName(playerList)
 
   //check if player already exists in localStorage
   // if name already exists, save player in playerFromPlayerList
@@ -60,7 +62,8 @@ btnNameBtn.addEventListener("click", () => {
   // display currentplayer name in HTML
   playerName.innerHTML = `<p class="player-name">Current Player: ${currentPlayer.name} </p>`;
   nameEntered = true;
-});
+})
+
 
 // create EventListener for Start the Game Button
 btnStartBtn.addEventListener("click", () => {
@@ -75,6 +78,11 @@ btnStartBtn.addEventListener("click", () => {
     );
   }
 });
+
+//create EventListener for Help Button
+btnHelpBtn.addEventListener("click", () => {
+  openHelpModal();
+})
 
 //create EventListener for Play Button on game page
 btnPlayBtn.addEventListener("click", () => {

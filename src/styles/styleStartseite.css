@@ -117,6 +117,71 @@ button:after {
   border-radius: 10px;
 }
 
+#close-help-modal, #close-name-modal {
+  width: 50px !important;
+}
+
+.modal { 
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.35s ease-in;
+}
+
+.modal.is-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-dialog {
+  position: relative;
+  width: 70%;
+  height: 60%;
+  border-radius: 5px;
+  background: white;
+  overflow: auto;
+  cursor: default;
+}
+
+.modal-dialog > * {
+  padding: 1rem;
+}
+ 
+.modal-header {
+  background: lightgrey;
+  font-family: 'Bangers', cursive;
+  font-size: 28px;
+  text-align: center;
+}
+ 
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.help-modal-content, .name-modal-content {
+  font-family: 'Roboto', sans-serif;
+}
+ 
+.modal-header .modal-close {
+  font-size: 1.5rem;
+}
+ 
+.modal p + p {
+  margin-top: 1rem;
+}
+
 .playBtn {
   display: none;
 }

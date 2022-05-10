@@ -1,51 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Breakout-Game</title>
-    <link rel="stylesheet" href="./src/styles/styleStartseite.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Lato:wght@300;400;700&family=Montserrat:wght@400;700&family=Roboto+Condensed:wght@400;700&family=Sedgwick+Ave&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/styles/styleStartseite.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Lato:wght@300;400;700&family=Montserrat:wght@400;700&family=Roboto+Condensed:wght@400;700&family=Sedgwick+Ave&display=swap"
+      rel="stylesheet"
+    />
     <script defer src="./build/bundle.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="header">
-        <p>Welcome to the fabulous</p>
-        <h1>Breakout Game</h1>s
+      <p>Welcome to the fabulous</p>
+      <h1>Breakout Game</h1>
+      s
     </header>
     <main class="main">
-        <div class="buttons">
-            <button class="nameBtn">Enter name</button>
-            <button class="startBtn">Start the Game</button>
-            <button class="helpBtn">Help</button>
-            <button class="playBtn">Play</button>
-            <div class="display">
-                <div class="current-score">Current Score: 0</div>
-                <div class="player-info">Please Press Play!</div>
-            </div>
+      <div class="buttons">
+        <button class="nameBtn" data-open="name-modal">Enter Name</button>
+        <button class="startBtn">Start the Game</button>
+        <button class="helpBtn" data-open="help-modal">Help</button>
+        <div class="modal" id="name-modal">
+          <div class="modal-dialog">
+            <header class="modal-header">
+              <h1>Welcome</h1>
+              <button class="close-modal" id="close-name-modal" aria-label="close modal" data-close>
+                X
+              </button>
+            </header>
+            <section class="name-modal-content">
+              <p>Hello, what is your name? Please enter any name for the game.</p>
+              <input type="text" class="name-input">
+              <button class="save-name">Save Name</button>
+            </section>
+          </div>
         </div>
-        <div class="gamefield">
-            <div class="playfield">
-                <canvas id="playfield-canvas" width="1000" height="600"></canvas>
-            </div>
+        <div class="modal" id="help-modal">
+          <div class="modal-dialog">
+            <header class="modal-header">
+              <h1>Breakout Spielkonzept</h1>
+              <button class="close-modal" id="close-help-modal" aria-label="close modal" data-close>
+                X
+              </button>
+            </header>
+            <section class="help-modal-content"></section>
+          </div>
         </div>
-        <div class="highscore">
-            <p class="level">Current Level: </p>
-            <p class="player-name">Please enter your name. </p>
-            <p class="timer">Time: 00:00</p>
-            <h2 id="highscore">Your Highscores:</h2>
-            <p class="highscore-list">(Player Name / Level / Time)</p>
-            <ul class="highscore-list">
-                <li></li>
-            </ul>
+        <button class="playBtn">Play</button>
+        <div class="display">
+          <div class="current-score">Current Score: 0</div>
+          <div class="player-info">Please Press Play!</div>
         </div>
+      </div>
+      <div class="gamefield">
+        <div class="playfield">
+          <canvas id="playfield-canvas" width="1000" height="600"></canvas>
+        </div>
+      </div>
+      <div class="highscore">
+        <p class="level">Current Level:</p>
+        <p class="player-name">Please enter your name.</p>
+        <p class="timer">Time: 00:00</p>
+        <h2 id="highscore">Your Highscores:</h2>
+        <p class="highscore-list">(Player Name / Level / Time)</p>
+        <ul class="highscore-list">
+          <li></li>
+        </ul>
+      </div>
     </main>
     <footer class="footer">
-        <p>created by Isabel Köcher | ON21</p>
+      <p>created by Isabel Köcher | ON21</p>
     </footer>
-</body>
+  </body>
 </html>

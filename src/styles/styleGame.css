@@ -97,6 +97,9 @@ button:after {
   border-radius: 10px;
 }
 
+.modal { 
+  display: none;
+}
 .display {
   grid-row: 1/3;
   width: var(--width);
