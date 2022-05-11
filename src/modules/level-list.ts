@@ -42,33 +42,33 @@ const LevelFive = [
 
 export { LevelOne, LevelTwo, LevelThree, LevelFour, LevelFive };
 
-export function changeBallAndPaddle(
-  button: HTMLButtonElement,
-  level: number,
-  ballSpeed: number,
-  paddleSpeed: number
-) {
-  button.innerHTML = "Next Level";
-  level += 1;
-  switch (level) {
-    case 2:
-      ballSpeed = 6;
-      paddleSpeed = 12;
-      return level && ballSpeed && paddleSpeed;
-      break;
-    case 4:
-      ballSpeed = 6;
-      paddleSpeed = 12;
-      return level && ballSpeed && paddleSpeed;
-      break;
-    case 3:
-        ballSpeed = 10;
-        paddleSpeed = 20;
-        return level && ballSpeed && paddleSpeed;
-        break;
-    default:
-        ballSpeed = ballSpeed;
-        paddleSpeed = paddleSpeed;
-        return level && ballSpeed && paddleSpeed;
-  }
-}
+// export function changeBallAndPaddle(
+//   button: HTMLButtonElement,
+//   level: number,
+//   ballSpeed: number,
+//   paddleSpeed: number
+// ) {
+//   button.innerHTML = "Next Level";
+//   level += 1;
+//   switch (level) {
+//     case 2:
+//       ballSpeed = 6;
+//       paddleSpeed = 12;
+//       return level && ballSpeed && paddleSpeed;
+//       break;
+//     case 4:
+//       ballSpeed = 6;
+//       paddleSpeed = 12;
+//       return level && ballSpeed && paddleSpeed;
+//       break;
+//     case 3:
+//         ballSpeed = 10;
+//         paddleSpeed = 20;
+//         return level && ballSpeed && paddleSpeed;
+//         break;
+//     default:
+//         ballSpeed = ballSpeed;
+//         paddleSpeed = paddleSpeed;
+//         return level && ballSpeed && paddleSpeed;
+//   }
+// }

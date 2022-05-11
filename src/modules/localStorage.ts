@@ -1,17 +1,18 @@
+//imports
 import { Player, score } from "./helpers/player-helpers";
-
-// get localStorage at key "players"
-export function getLocalStorage(): Player[] {
-  const savedPlayerList = JSON.parse(localStorage.getItem("players") || "[]");
-  return savedPlayerList;
-}
 
 //set default localStorage with a random player
 export function setDefaultLocalStorage(defaultPlayer: Player) {
   localStorage.setItem("players", JSON.stringify([defaultPlayer]));
 }
 
-// check if a player already exists in localStorage
+// get localStorage at key "players" and return PlayerArray or an empty array
+export function getLocalStorage(): Player[] {
+  const savedPlayerList = JSON.parse(localStorage.getItem("players") || "[]");
+  return savedPlayerList;
+}
+
+// check if a specific player already exists in localStorage and return player or undefined
 export function checkStorageforPlayer(
   playerList: Player[],
   name: string
@@ -28,6 +29,8 @@ export function updateStorage(playerList: Player[]) {
   localStorage.setItem("players", JSON.stringify(playerList));
 }
 
+
+//TODO check mich
 // check if player in storage already has an highscore list (given that cheStoragePlayer === true)
 export function playerHasHighscoreStorage(currentPlayer: Player): boolean {
   if (currentPlayer.highscore != undefined) return true;

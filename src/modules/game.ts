@@ -1,3 +1,4 @@
+// imports
 import { CanvasView } from "./canvas-elements/CanvasView";
 import { Brick } from "./canvas-elements/Brick";
 import { Paddle } from "./canvas-elements/Paddle";
@@ -24,27 +25,34 @@ import { setHighscore } from "./player";
 import { displayHighscoreList, displayCurrentLevel } from './helpers/gamepage-setup';
 import { updateStorage } from "./localStorage";
 
+
+// game logic
+
+// set up variables with default values needed for the first level
+// set level to 1 and score to 0
 let ballSpeed = defaultBallSpeed;
 let paddleSpeed = defaultPaddleSpeed;
 let paddleWidth = defaultPaddleWidth;
 let level = 1;
-
-//TODO lösch mich
-let gameOver = false;
 let score = 0;
+let gameOver = false;
 
+// on play, the game can start with the current player
 export function playTheGame(
   currentPlayer: Player,
   playerList: Player[]
 ) {
   console.log("Das Spiel wird gestartet");
   displayCurrentLevel(displayLevel, level);
-  const myGame = new CanvasView();
-  //start the game for the current level
-  startGame(myGame, currentPlayer, playerList);
+  // reset the timer to 00:00
   resetTimer();
+  // clear Highscore List to display the most updated HighscoreList
   removeChilds(highscoreList);
   displayHighscoreList(playerList);
+  // create a new Canvas for the game
+  const myGame = new CanvasView();
+  // start the game for the current level
+  startGame(myGame, currentPlayer, playerList);
 }
 
 // starts the game
@@ -53,19 +61,22 @@ function startGame(
   currentPlayer: Player,
   playerList: Player[]
 ): CanvasView {
-  //reset displays for level
+
+  // set the level
   const currentLevel = level;
+
+  // reset displays for level
   score = 0;
   game.displayScore(0);
   game.displayPlayerInfo(`Please Press Play!`);
 
-  // Setup a Collisison instance for game
+  // Create a new Collision instance for the level
   const collision = new Collision();
 
-  //Create all bricks
+  // Create all bricks for the current level
   const bricks = createBrickArray(currentLevel);
 
-  //Create a paddle
+  // Create a paddle
   const paddle = new Paddle(
     paddleImg,
     paddleStartX,
@@ -75,7 +86,7 @@ function startGame(
     paddleSpeed
   );
 
-  //Create a ball
+  // Create a ball
   const ball = new Ball(
     ballImg,
     ballSize,
@@ -85,18 +96,14 @@ function startGame(
     -ballSpeed
   );
 
-  // set a random Ball Position
+  // set a random Ball Position for current level
   setRandomStartPos(ball);
-  // const randomXNum = randomStartPos();
-  // const randomYNum = randomStartPos();
-  // ball.setXPosition(randomXNum);
-  // ball.setYPosition(randomYNum);
-  const a = ball.getXPosition();
-  const b = ball.getYPosition();
-  console.log("Ball X", a);
-  console.log("Ball y", b);
+  // const a = ball.getXPosition();
+  // const b = ball.getYPosition();
+  // console.log("Ball X", a);
+  // console.log("Ball y", b);
 
-  // start the timer to count how long player needs to solve the current level
+  // start the timer to count how long player needs to finish the current level
   timerStart();
   // starts the game loop function
   gameLoop(
@@ -112,6 +119,7 @@ function startGame(
   return game;
 }
 
+// function to implement the movmements and collisions within the canvas
 function gameLoop(
   game: CanvasView,
   bricks: Brick[],
@@ -122,7 +130,7 @@ function gameLoop(
   playerList: Player[],
   currentLevel: number
 ) {
-  // remove last game
+  // remove last game / clear canvas
   game.clear();
   // display game elements in canvas
   game.drawBricks(bricks);
@@ -130,7 +138,7 @@ function gameLoop(
   game.displayGameElement(ball);
   game.displayPlayerInfo("");
 
-  //Move paddle and make sure it will stay in the Canvas
+  // Move paddle and make sure it will stay within the canvas
   if (
     (paddle.getMovingLeft() && paddle.getXPosition() > 0) ||
     (paddle.getMovingRight() &&
@@ -139,13 +147,14 @@ function gameLoop(
     paddle.movePaddle();
   }
 
-  //Move ball in Canvas
+  // Move ball in Canvas
   ball.moveBall();
 
-  //check if ball if ball collides with other game elements
+  // check if ball collides with other game elements
   collision.checkBallColliding(ball, paddle, game);
+  // check if ball collides with a  brick an return a boolean
   const collidingBrick = collision.reduceBricksOnCollision(ball, bricks);
-
+  // if ball hits a brick
   // count the collision of ball with bricks and display it in html
   if (collidingBrick) {
     score += 1;
@@ -154,18 +163,22 @@ function gameLoop(
 
   // Set game won, when all bricks are hit
   if (bricks.length === 0) {
+    //TODO
+    // gameOver = false;
     game.clear();
     game.displayGameElement(paddle);
     return setGameWin(game, currentPlayer, playerList, currentLevel);
   }
 
-  //Set game over, when ball hits the ground
+  // Set game over, when ball hits the ground
   if (ball.getYPosition() > game.canvas.height) {
+    //TODO
     gameOver = true;
     return setGameOver(game);
   }
 
   // AnimationFrame to create the gameLoop forever and forever
+  // until setGameWin or setGameOver function is called
   requestAnimationFrame(() =>
     gameLoop(
       game,
@@ -181,14 +194,16 @@ function gameLoop(
 }
 
 // if player looses the ball, the game will be set to game over
+// timer will be stopped and Play Button text will change
 function setGameOver(game: CanvasView) {
   game.displayPlayerInfo("Game Over!");
-  gameOver = false;
+  //TODO
+  // gameOver = false;
   timerStop();
-  // resetTimerNEW();
   btnPlayBtn.innerHTML = "Try Again";
 }
 
+// if player finishes the level, level will be set to game won
 function setGameWin(
   game: CanvasView,
   currentPlayer: Player,
@@ -196,7 +211,10 @@ function setGameWin(
   currentLevel: number
 ) {
   game.displayPlayerInfo("Game Won!");
-  gameOver = false;
+  //TODO
+  // gameOver = false;
+  // timer will be stopped and time needed for the level will be stored in time variable
+  // Highscore Array of player needs to be updated
   timerStop();
   const time = getTimer();
   const updatedPlayerList = setHighscore(
@@ -205,9 +223,9 @@ function setGameWin(
     currentLevel,
     time
   );
+  // update localStorage with adapted playerList to display it in next level under highscores
   updateStorage(updatedPlayerList);
   // adapt the level with ball speed and paddle speed and width
-  //TODO in Funktion changeBallandPaddle auslagern oder diese Funktion in level-list löschen!
   switch (currentLevel) {
     case 1:
       btnPlayBtn.innerHTML = "Next Level";
