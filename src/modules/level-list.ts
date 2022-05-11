@@ -1,15 +1,8 @@
-// Level OneTesting and LevelTwoTesting just for test purposes
-// const LevelOneTesting = [
-//   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//   0, 0, 0, 0, 0, 0, 0, 0,
-// ];
+// inpired by freeCodeCamp.org. (2021, 25. Februar). 
+// TypeScript GameDev Tutorial – Create an Arkanoid Game [Video]. 
+// YouTube. https://www.youtube.com/watch?v=7bejSTim38A
 
-// const LevelTwoTesting = [
-//   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1,
-//   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//   0, 0, 0, 0, 0, 0, 0, 0,
-// ];
+// four more levels have been added
 
 const LevelOne = [
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 3, 2, 2,
@@ -43,34 +36,16 @@ const LevelFive = [
 
 export { LevelOne, LevelTwo, LevelThree, LevelFour, LevelFive };
 
-//TODO 
-// export function changeBallAndPaddle(
-//   button: HTMLButtonElement,
-//   level: number,
-//   ballSpeed: number,
-//   paddleSpeed: number
-// ) {
-//   button.innerHTML = "Next Level";
-//   level += 1;
-//   switch (level) {
-//     case 2:
-//       ballSpeed = 6;
-//       paddleSpeed = 12;
-//       return level && ballSpeed && paddleSpeed;
-//       break;
-//     case 4:
-//       ballSpeed = 6;
-//       paddleSpeed = 12;
-//       return level && ballSpeed && paddleSpeed;
-//       break;
-//     case 3:
-//         ballSpeed = 10;
-//         paddleSpeed = 20;
-//         return level && ballSpeed && paddleSpeed;
-//         break;
-//     default:
-//         ballSpeed = ballSpeed;
-//         paddleSpeed = paddleSpeed;
-//         return level && ballSpeed && paddleSpeed;
-//   }
-// }
+
+// Level OneTesting and LevelTwoTesting just for test purposes
+// const LevelOneTesting = [
+//   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//   0, 0, 0, 0, 0, 0, 0, 0,
+// ];
+
+// const LevelTwoTesting = [
+//   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+//   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//   0, 0, 0, 0, 0, 0, 0, 0,
+// ];

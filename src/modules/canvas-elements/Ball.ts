@@ -1,3 +1,10 @@
+// inpired by freeCodeCamp.org. (2021, 25. Februar). 
+// TypeScript GameDev Tutorial – Create an Arkanoid Game [Video]. 
+// YouTube. https://www.youtube.com/watch?v=7bejSTim38A
+
+// names have been modified
+// steRandomStartPos is own logic
+
 // imports
 import { randomStartPos } from "./setup-helpers/ball-setup";
 export class Ball {

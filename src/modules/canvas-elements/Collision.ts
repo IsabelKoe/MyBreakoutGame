@@ -1,3 +1,9 @@
+// inpired by freeCodeCamp.org. (2021, 25. Februar). 
+// TypeScript GameDev Tutorial – Create an Arkanoid Game [Video]. 
+// YouTube. https://www.youtube.com/watch?v=7bejSTim38A
+
+// names have been modfied
+
 // imports
 import { Ball } from "./Ball";
 import { Paddle } from "./Paddle";

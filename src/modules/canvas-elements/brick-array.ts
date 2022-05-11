@@ -1,9 +1,14 @@
+// inpired by freeCodeCamp.org. (2021, 25. Februar). 
+// TypeScript GameDev Tutorial – Create an Arkanoid Game [Video]. 
+// YouTube. https://www.youtube.com/watch?v=7bejSTim38A
+
+// has been modified due to implementation of 5 levels
+
 // imports
 import { LevelOne, LevelTwo, LevelThree, LevelFour, LevelFive } from "../level-list";
 import { Brick } from "./Brick";
 import { brickPadding, brickWidth, brickHeight, brickImages, brickDifficultyLevel } from "./setup-helpers/brick-setup";
 import { canvasPadding, canvasColumns } from "./setup-helpers/canvas-setup";
-
 
 // create Array of Levels with key:value pairs
 const levels: {[key: number]: number[]} = {

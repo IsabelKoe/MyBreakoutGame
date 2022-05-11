@@ -1,3 +1,8 @@
+// inspired by Martsoukos, G. (2019, 1. Juli). 
+// How to Build a JavaScript Popup Modal From Scratch. 
+// Web Design Envato Tuts+. Abgerufen am 11. Mai 2022, 
+// von https://webdesign.tutsplus.com/tutorials/how-to-build-flexible-modal-dialogs-with-html-css-and-javascript--cms-33500
+
 // import 
 import { exitHelp, helpModal, helpModalContent } from "./helpers/domutils";
 

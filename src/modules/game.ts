@@ -1,3 +1,11 @@
+// inpired by freeCodeCamp.org. (2021, 25. Februar). 
+// TypeScript GameDev Tutorial – Create an Arkanoid Game [Video]. 
+// YouTube. https://www.youtube.com/watch?v=7bejSTim38A
+
+// names have been modified
+// logic has been modified and expanded with own logic
+// especially setGameWin logic, timer, random ball start
+
 // imports
 import { CanvasView } from "./canvas-elements/CanvasView";
 import { Brick } from "./canvas-elements/Brick";
@@ -97,10 +105,6 @@ function startGame(
 
   // set a random Ball Position for current level
   setRandomStartPos(ball);
-  // const a = ball.getXPosition();
-  // const b = ball.getYPosition();
-  // console.log("Ball X", a);
-  // console.log("Ball y", b);
 
   // start the timer to count how long player needs to finish the current level
   timerStart();

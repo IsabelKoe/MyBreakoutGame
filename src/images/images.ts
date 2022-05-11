@@ -1,3 +1,7 @@
+// images and logic from freeCodeCamp.org. (2021, 25. Februar). 
+// TypeScript GameDev Tutorial – Create an Arkanoid Game [Video]. 
+// YouTube. https://www.youtube.com/watch?v=7bejSTim38A
+
 import {
   ballImg,
   blueBrickImg,
