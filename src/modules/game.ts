@@ -35,7 +35,6 @@ let paddleSpeed = defaultPaddleSpeed;
 let paddleWidth = defaultPaddleWidth;
 let level = 1;
 let score = 0;
-let gameOver = false;
 
 // on play, the game can start with the current player
 export function playTheGame(
@@ -163,8 +162,6 @@ function gameLoop(
 
   // Set game won, when all bricks are hit
   if (bricks.length === 0) {
-    //TODO
-    // gameOver = false;
     game.clear();
     game.displayGameElement(paddle);
     return setGameWin(game, currentPlayer, playerList, currentLevel);
@@ -172,8 +169,6 @@ function gameLoop(
 
   // Set game over, when ball hits the ground
   if (ball.getYPosition() > game.canvas.height) {
-    //TODO
-    gameOver = true;
     return setGameOver(game);
   }
 
@@ -197,8 +192,6 @@ function gameLoop(
 // timer will be stopped and Play Button text will change
 function setGameOver(game: CanvasView) {
   game.displayPlayerInfo("Game Over!");
-  //TODO
-  // gameOver = false;
   timerStop();
   btnPlayBtn.innerHTML = "Try Again";
 }
@@ -211,8 +204,6 @@ function setGameWin(
   currentLevel: number
 ) {
   game.displayPlayerInfo("Game Won!");
-  //TODO
-  // gameOver = false;
   // timer will be stopped and time needed for the level will be stored in time variable
   // Highscore Array of player needs to be updated
   timerStop();
