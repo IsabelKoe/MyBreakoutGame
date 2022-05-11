@@ -12,39 +12,36 @@ export class CanvasView {
   canvas: HTMLCanvasElement;
   private _context: CanvasRenderingContext2D | null;
   private _currentScore: HTMLElement | null;
-
-  //TODO lösch mich!
-  private _startBtn: HTMLButtonElement | null;
   private _playerInfo: HTMLElement | null;
 
   constructor() {
     this.canvas = canvas as HTMLCanvasElement;
     this._context = this.canvas.getContext("2d");
     this._currentScore = currentScore;
-    this._startBtn = btnPlayBtn;
     this._playerInfo = playerInfo;
   }
 
-  // clear Methode, die das Canvas wieder komplett zurücksetzt
+  // function to clear the whole canvas at once
   clear(): void {
     this._context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
-  // displayScore Methode setzt den aktuellen Score unterdem Spielfeld, in dem die Bricks gezählt werden, die getroffen wurden
+  // function to display the current score in html
+  // counts if brick has been hit
   displayScore(score: number): void {
     if (this._currentScore) {
       this._currentScore.innerHTML = `Current Score: ${score.toString()}`;
     }
   }
 
-  // displayPlayerInfo Methode setzt den Info Text unter dem Spielfeld für den Spieler entsprechend
+  // function to display different text as player info
   displayPlayerInfo(text: string): void {
     if (this._playerInfo) {
       this._playerInfo.innerHTML = text;
     }
   }
 
-  // displayGameElement Methode erzeugt die unterschiedlichen Elemente im Canvas/stellt sie bildlich dar (bricks, paddle, ball)
+  // create/ display game elements in canvas (draw)
   displayGameElement(element: Brick | Paddle | Ball): void {
     if (!element) return;
     else {
@@ -58,7 +55,7 @@ export class CanvasView {
     }
   }
 
-  // drawBricks Methode, um ein Array von unterschiedlichen Bricks im Canvas aufzeichnen zu können
+  // function to draw an array of bricks in canvas
   drawBricks(bricks: Brick[]): void {
     bricks.forEach((brick) => this.displayGameElement(brick));
   }

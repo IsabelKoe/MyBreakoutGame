@@ -1,9 +1,10 @@
+// imports
 import { Ball } from "./Ball";
 import { Paddle } from "./Paddle";
 import { Brick } from "./Brick";
 import { CanvasView } from "./CanvasView";
 // imports only used as types - no instances will be created
-//class to collect all collision methods in one class
+// class to collect all collision methods in one class
 export class Collision {
   // method to check whether the ball hits another element (paddle or canvas wall)
   checkBallColliding(ball: Ball, paddle: Paddle, game: CanvasView): void {
@@ -16,7 +17,7 @@ export class Collision {
       ball.changeDirectionY();
     }
     // Collision with canvas walls
-    //right and left walls
+    // right and left walls
     if (
       ball.getXPosition() > game.canvas.width - ball.getWidth() ||
       ball.getXPosition() < 0
@@ -28,7 +29,7 @@ export class Collision {
       ball.changeDirectionY();
     }
   }
-  //check if ball hits a brick
+  // check if ball hits a brick
   checkBallCollidingBrick(ball: Ball, brick: Brick): boolean {
     if (
       ball.getXPosition() < brick.getXPosition() + brick.getWidth() &&
@@ -41,8 +42,8 @@ export class Collision {
       return false;
     }
   }
-  // if ball hits one or more bricks, we have to reduce the bricks difficulty level by one
-  // if bricks dificulty is 1, we have to delete the brick from display
+  // if ball hits one or more bricks, we have to reduce the brick difficulty level by one
+  // if brick dificulty is 1, we have to delete the brick from display
   reduceBricksOnCollision(ball: Ball, bricks: Brick[]): boolean {
     let collision = false;
 
