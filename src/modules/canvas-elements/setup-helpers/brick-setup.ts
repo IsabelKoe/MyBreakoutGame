@@ -1,3 +1,4 @@
+// imports
 import { canvas } from "../../helpers/domutils";
 import { canvasPadding, canvasRows, canvasColumns } from "./canvas-setup";
 import {

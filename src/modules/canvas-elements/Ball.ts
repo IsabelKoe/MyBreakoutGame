@@ -1,8 +1,5 @@
-// ball for game
-
+// imports
 import { randomStartPos } from "./setup-helpers/ball-setup";
-
-// methods to get variables from ball and to move the ball
 export class Ball {
   private _ballImg: HTMLImageElement;
   private _xSpeed: number;
@@ -24,7 +21,7 @@ export class Ball {
     this._ySpeed = ySpeed;
   }
 
-  //Getter methods to be able to call the private Variables from outside
+  // Getter methods to be able to call the private Variables from outside
   getImg(): HTMLImageElement {
     return this._ballImg;
   }
@@ -53,11 +50,6 @@ export class Ball {
     this._xPosition = randomNumber;
   }
 
-  //TODO lösch mich??
-  setYPosition(randomNumber: number){
-    this._yPosition = randomNumber;
-  }
-
   // Methods to move the ball and to change direction of moving
   moveBall(): void {
     this._xPosition += this._xSpeed;
@@ -73,6 +65,7 @@ export class Ball {
   }
 }
 
+// function to set the startposition of ball randomly
 export function setRandomStartPos(ball: Ball) {
   const randomXNum = randomStartPos();
   ball.setXPosition(randomXNum);

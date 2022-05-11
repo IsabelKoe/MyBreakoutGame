@@ -25,7 +25,7 @@ export class Paddle {
     document.addEventListener("keyup", this.handleKeyUp);
   }
 
-  //Getter methods to be able to call the private Variables from outside
+  // Getter methods to be able to call the private Variables from outside
   getImg(): HTMLImageElement {
     return this._paddleImg;
   }

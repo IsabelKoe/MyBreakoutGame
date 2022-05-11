@@ -17,7 +17,7 @@ export class Brick {
     this._brickDifficulty = _brickDifficulty;
   }
 
-  //Getter Methoden, um an die verschiedenen Properties von außen heranzukommen
+  // Getter functions
   getImg(): HTMLImageElement {
     return this._brickImg;
   }
@@ -42,7 +42,7 @@ export class Brick {
     return this._brickDifficulty;
   }
 
-  //Setter Methode, um den Schwierigkeitsgrad eines einzelnen Bricks zu setzen (wie oft er getroffen werden muss bis er verschwindet)
+  // Setter function to give brick a certain difficulty level
   setBrickDifficulty(difficultyLevel: number) {
     this._brickDifficulty = difficultyLevel;
   }
