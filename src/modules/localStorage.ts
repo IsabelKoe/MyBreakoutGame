@@ -29,14 +29,13 @@ export function updateStorage(playerList: Player[]) {
   localStorage.setItem("players", JSON.stringify(playerList));
 }
 
-
-//TODO check mich
-// check if player in storage already has an highscore list (given that cheStoragePlayer === true)
+// check if player already has an highscore list
 export function playerHasHighscoreStorage(currentPlayer: Player): boolean {
   if (currentPlayer.highscore != undefined) return true;
   else return false;
 }
 
+// return the highscoreArray of player or return undefined
 export function getExistingHighscoreList(currentPlayer: Player, localStorageList: Player[]) {
   for(let player of localStorageList){
     if(player.name === currentPlayer.name){
@@ -45,7 +44,7 @@ export function getExistingHighscoreList(currentPlayer: Player, localStorageList
   }
 }
 
-// check if player has score for current level in storage (given hasStorage at all)
+// check if player has score for current level and return boolean
 export function hasScoreForLevel(
   currentPlayer: Player,
   currentLevel: number
@@ -64,6 +63,7 @@ export function hasScoreForLevel(
   return levelExists;
 }
 
+// return a highscore object of current level
 export function getExistingScoreFromStorage(
   highscores: score[],
   currentLevel: number
