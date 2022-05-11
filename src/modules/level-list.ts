@@ -43,6 +43,7 @@ const LevelFive = [
 
 export { LevelOne, LevelTwo, LevelThree, LevelFour, LevelFive };
 
+//TODO 
 // export function changeBallAndPaddle(
 //   button: HTMLButtonElement,
 //   level: number,

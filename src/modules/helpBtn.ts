@@ -1,7 +1,9 @@
+// import 
 import { exitHelp, helpModal, helpModalContent } from "./helpers/domutils";
 
 const isVisible = "is-visible";
 
+// opens the modal window for help button
 export function openHelpModal(){
     if(helpModal)
     helpModal.classList.add(isVisible);
@@ -36,21 +38,20 @@ export function openHelpModal(){
        '
 }
 
-
-
+// add EventListener to Closing Button of Modal and close modal on click
 exitHelp.addEventListener("click", function () {
       if(helpModal) helpModal.classList.remove(isVisible);
   });
 
-
+// add EventListener to close modal if player clicks outside of modal window
 document.addEventListener("click", (e) => {
   if (e.target === document.querySelector(".modal.is-visible")) {
     helpModal.classList.remove(isVisible);
   }
 });
 
+// add EventListener to close modal if player wants to leave modal view with escape key
 document.addEventListener("keyup", (e) => {
-  // if we press the ESC
   if (e.key == "Escape" && document.querySelector(".modal.is-visible")) {
     helpModal.classList.remove(isVisible);
   }
