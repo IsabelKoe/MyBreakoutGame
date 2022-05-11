@@ -1,11 +1,10 @@
-//grab html elements from startpage
+// grab needed html elements form index html
 export const styleSheet = document.querySelector("link") as HTMLLinkElement;
 export const htmlHeader = document.querySelector(".header") as HTMLElement;
 export const hmtlMain = document.querySelector(".main") as HTMLElement;
 export const htmlDivButtons = document.querySelector(".buttons") as HTMLElement;
 export const btnStartBtn = document.querySelector(".startBtn") as HTMLButtonElement;
 export const btnNameBtn = document.querySelector(".nameBtn") as HTMLButtonElement;
-export const saveName = document.querySelector(".save-name") as HTMLButtonElement;
 export const btnHelpBtn = document.querySelector(".helpBtn") as HTMLButtonElement;
 export const exitHelp = document.querySelector("#close-help-modal") as HTMLElement;
 export const helpModal = document.querySelector("#help-modal") as HTMLElement;
@@ -24,7 +23,7 @@ export const timer = document.querySelector(".timer") as HTMLElement;
 export const highscore = document.querySelector(".highscore") as HTMLElement;
 export const highscoreList = document.querySelector(".highscore-list") as HTMLElement;
 
-//Create new image elements for game elements
+// Create new image elements for game elements
 export const ballImg: HTMLImageElement = document.createElement("img");
 export const blueBrickImg: HTMLImageElement = document.createElement("img");
 export const greenBrickImg: HTMLImageElement = document.createElement("img");

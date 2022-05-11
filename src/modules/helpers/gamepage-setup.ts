@@ -1,3 +1,4 @@
+// imports
 import { displayPlayerHighscores } from "../player";
 import {
   btnHelpBtn,
@@ -15,27 +16,27 @@ import { Player } from "./player-helpers";
 
 // change styling of page to styleGame.css and adjust classes
 export function changeToGamePage() {
-  //insert the new stylesheet
+  // insert the new stylesheet
   changeStyleSheet();
-  //adjust the header
+  // adjust the header
   changeHeader();
-  //adjust the main
+  // adjust the main
   changeMain();
 }
 
-//set up the highscore list on gamepage in html
+// set up the highscore list on gamepage in html
 export function displayHighscoreList(playerList: Player[]) {
-  //loop over all players in playerlist
+  // loop over all players in playerlist
   let atLeastOneHighscore = false;
   for (let player of playerList) {
-    //if players, have highscores, then display PlayerName: Level Time
+    // if players, have highscores, then display PlayerName: Level Time
     if (player.highscore !== undefined) {
       atLeastOneHighscore = true;
-      //show all highscores in highscore array in html
+      //show all highscores in highscore array of that player in html
       displayPlayerHighscores(player);
     }
   }
-  // if no player has an highscore yet, show one time in html
+  // if no player has an highscore yet, show message in html
   if (!atLeastOneHighscore) {
     const liItem = createNewListItem();
     highscoreList.appendChild(liItem);
@@ -48,18 +49,18 @@ export function displayCurrentLevel(htmlElement: HTMLElement, level: number) {
   htmlElement.innerHTML = `<p class="level">Current Level: ${level}</p>`
 }
 
-//exchange stylesheet in html
+// exchange stylesheet in html
 function changeStyleSheet() {
   styleSheet.href = "./src/styles/styleGame.css";
 }
 
-//adjust the header element for game
+// adjust the header element for game
 function changeHeader() {
   htmlHeader.classList.add("gamepage");
   htmlHeader.firstChild?.remove();
 }
 
-//adjust the main element for game
+// adjust the main element for game
 function changeMain() {
   hmtlMain.classList.add("grid");
   htmlDivButtons.classList.add("grid");
